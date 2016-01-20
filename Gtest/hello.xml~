@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="my-style.css"?>
+<testsuites tests="1" failures="0" disabled="0" errors="0" timestamp="2016-01-19T17:25:06" time="0.001" name="AllTests">
+  <testsuite name="MathTest" tests="1" failures="0" disabled="0" errors="0" time="0">
+    <testcase name="TwoPlusTwoEqualsFour" status="run" time="0" classname="MathTest" />
+  </testsuite>
+</testsuites>

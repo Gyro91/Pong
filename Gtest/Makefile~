@@ -1,0 +1,14 @@
+GTEST_DIR=googletest-master/googletest
+GMOCK_DIR=googletest-master/googlemock
+CC=g++
+
+all:
+	g++ -I $(GTEST_DIR)/include $(GMOCK_DIR)/include buttontest.cpp libgtest.a  -lpthread -o test 
+
+all2:
+	 g++ -I $(GTEST_DIR)/include test.cpp libgtest.a  -lpthread -o test
+all3:
+	g++ -isystem ${GTEST_DIR}/include -isystem ${GMOCK_DIR}/include \
+    -pthread buttontest.cpp libgmock.a -o your_test
+clean:
+	rm *o 

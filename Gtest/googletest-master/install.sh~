@@ -1,0 +1,9 @@
+#!/bin/sh
+
+GTEST_DIR="googletest"
+GMOCK_DIR="googlemock"
+
+
+
+
+
