@@ -28,10 +28,6 @@
 *.x86_64
 *.hex
 
-# Debug files
-*.dSYM/
-<<<<<<< HEAD
-
 *.pydevproject
 .metadata
 .gradle
@@ -78,3 +74,5 @@ local.properties
 .texlipse
 
 .deps/*
+
+
