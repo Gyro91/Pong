@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Profile xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_MNNcgMHzEeWf7cYredJJHQ" name="PlatformComputation">
+  <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_d9F-ocHzEeWf7cYredJJHQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <contents xmi:type="ecore:EPackage" xmi:id="_-O1r0MKwEeWMjs8O3a-FlQ" name="PlatformComputation" nsURI="http:///schemas/PlatformComputation/_-Oz2oMKwEeWMjs8O3a-FlQ/3" nsPrefix="PlatformComputation">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_-O4IEsKwEeWMjs8O3a-FlQ" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_-O4IE8KwEeWMjs8O3a-FlQ" key="Version" value="0.0.4"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_-O4IFMKwEeWMjs8O3a-FlQ" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_-O4IFcKwEeWMjs8O3a-FlQ" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_-O4IFsKwEeWMjs8O3a-FlQ" key="Date" value="2016-01-24"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_-O4IF8KwEeWMjs8O3a-FlQ" key="Author" value=""/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_-O1r0cKwEeWMjs8O3a-FlQ" name="Board">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_-O1r0sKwEeWMjs8O3a-FlQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_Rkr3gMHzEeWf7cYredJJHQ"/>
+        <eSuperTypes xmi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//blocks/Block"/>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_-O1r1MKwEeWMjs8O3a-FlQ" name="MicroController">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_-O1r1cKwEeWMjs8O3a-FlQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_nifyoMHzEeWf7cYredJJHQ"/>
+        <eSuperTypes xmi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//blocks/Block"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_-O1r1sKwEeWMjs8O3a-FlQ" name="maker" ordered="false" lowerBound="1" eType="_-O1r3cKwEeWMjs8O3a-FlQ"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_-O1r2MKwEeWMjs8O3a-FlQ" name="model" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//String"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_-O1r2sKwEeWMjs8O3a-FlQ" name="speed" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Integer"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EEnum" xmi:id="_-O1r3cKwEeWMjs8O3a-FlQ" name="MicroMakerType">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_-O1r3sKwEeWMjs8O3a-FlQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_hBJwEMH0EeWf7cYredJJHQ"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_-O1r38KwEeWMjs8O3a-FlQ" name="ARM"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_-O1r4MKwEeWMjs8O3a-FlQ" name="TOSHIBA" value="1"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_-O1r4cKwEeWMjs8O3a-FlQ" name="MICHROCHIP" value="2"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_-O1r4sKwEeWMjs8O3a-FlQ" name="ATmega" value="3"/>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_-O1r48KwEeWMjs8O3a-FlQ" name="Memory">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_-O1r5MKwEeWMjs8O3a-FlQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_uK5C8MHzEeWf7cYredJJHQ"/>
+        <eSuperTypes xmi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//blocks/Block"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_-O1r5cKwEeWMjs8O3a-FlQ" name="size" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Integer"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_-O1r58KwEeWMjs8O3a-FlQ" name="type" ordered="false" lowerBound="1" eType="_-O1r6sKwEeWMjs8O3a-FlQ"/>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EEnum" xmi:id="_-O1r6sKwEeWMjs8O3a-FlQ" name="MemoryType">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_-O1r68KwEeWMjs8O3a-FlQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_CvcFEMH0EeWf7cYredJJHQ"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_-O1r7MKwEeWMjs8O3a-FlQ" name="RAM"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_-O1r7cKwEeWMjs8O3a-FlQ" name="ROM" value="1"/>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_-O1r7sKwEeWMjs8O3a-FlQ" name="NetDemand">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_-O1r78KwEeWMjs8O3a-FlQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_wm81sMHzEeWf7cYredJJHQ"/>
+        <eSuperTypes xmi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//blocks/Block"/>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_-O1r8cKwEeWMjs8O3a-FlQ" name="GenericIO">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_-O1r8sKwEeWMjs8O3a-FlQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_4wyqoMHzEeWf7cYredJJHQ"/>
+        <eSuperTypes xmi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//blocks/Block"/>
+      </eClassifiers>
+    </contents>
+    <contents xmi:type="ecore:EPackage" xmi:id="_-Q4ZoMH0EeWf7cYredJJHQ" name="PlatformComputation" nsURI="http:///schemas/PlatformComputation/_-Q3ykMH0EeWf7cYredJJHQ/2" nsPrefix="PlatformComputation">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_-Q6O0cH0EeWf7cYredJJHQ" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_-Q6O0sH0EeWf7cYredJJHQ" key="Version" value="0.0.3"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_-Q6O08H0EeWf7cYredJJHQ" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_-Q6O1MH0EeWf7cYredJJHQ" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_-Q6O1cH0EeWf7cYredJJHQ" key="Date" value="2016-01-23"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_-Q6O1sH0EeWf7cYredJJHQ" key="Author" value=""/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_-Q4ZocH0EeWf7cYredJJHQ" name="Board">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_-Q4ZosH0EeWf7cYredJJHQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_Rkr3gMHzEeWf7cYredJJHQ"/>
+        <eSuperTypes xmi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//blocks/Block"/>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_-Q4ZpMH0EeWf7cYredJJHQ" name="MicroController">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_-Q4ZpcH0EeWf7cYredJJHQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_nifyoMHzEeWf7cYredJJHQ"/>
+        <eSuperTypes xmi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//blocks/Block"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_-Q4ZpsH0EeWf7cYredJJHQ" name="maker" ordered="false" lowerBound="1" eType="_-Q4ZrcH0EeWf7cYredJJHQ"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_-Q4ZqMH0EeWf7cYredJJHQ" name="model" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//String"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_-Q4ZqsH0EeWf7cYredJJHQ" name="speed" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Integer"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EEnum" xmi:id="_-Q4ZrcH0EeWf7cYredJJHQ" name="MicroMakerType">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_-Q4ZrsH0EeWf7cYredJJHQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_hBJwEMH0EeWf7cYredJJHQ"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_-Q4Zr8H0EeWf7cYredJJHQ" name="ARM"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_-Q4ZsMH0EeWf7cYredJJHQ" name="TOSHIBA" value="1"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_-Q4ZscH0EeWf7cYredJJHQ" name="MICHROCHIP" value="2"/>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_-Q4ZssH0EeWf7cYredJJHQ" name="Memory">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_-Q4Zs8H0EeWf7cYredJJHQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_uK5C8MHzEeWf7cYredJJHQ"/>
+        <eSuperTypes xmi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//blocks/Block"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_-Q4ZtMH0EeWf7cYredJJHQ" name="size" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Integer"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_-Q4ZtsH0EeWf7cYredJJHQ" name="type" ordered="false" lowerBound="1" eType="_-Q4ZucH0EeWf7cYredJJHQ"/>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EEnum" xmi:id="_-Q4ZucH0EeWf7cYredJJHQ" name="MemoryType">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_-Q4ZusH0EeWf7cYredJJHQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_CvcFEMH0EeWf7cYredJJHQ"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_-Q4Zu8H0EeWf7cYredJJHQ" name="RAM"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_-Q4ZvMH0EeWf7cYredJJHQ" name="ROM" value="1"/>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_-Q4ZvcH0EeWf7cYredJJHQ" name="NetDemand">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_-Q4ZvsH0EeWf7cYredJJHQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_wm81sMHzEeWf7cYredJJHQ"/>
+        <eSuperTypes xmi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//blocks/Block"/>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_-Q4ZwMH0EeWf7cYredJJHQ" name="GenericIO">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_-Q4ZwcH0EeWf7cYredJJHQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_4wyqoMHzEeWf7cYredJJHQ"/>
+        <eSuperTypes xmi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//blocks/Block"/>
+      </eClassifiers>
+    </contents>
+    <contents xmi:type="ecore:EPackage" xmi:id="_HyB1MMH0EeWf7cYredJJHQ" name="RootElement" nsURI="http:///schemas/RootElement/_HyBOIMH0EeWf7cYredJJHQ/1" nsPrefix="RootElement">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_HyDDU8H0EeWf7cYredJJHQ" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_HyDDVMH0EeWf7cYredJJHQ" key="Version" value="0.0.2"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_HyDDVcH0EeWf7cYredJJHQ" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_HyDDVsH0EeWf7cYredJJHQ" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_HyDDV8H0EeWf7cYredJJHQ" key="Date" value="2016-01-23"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_HyDDWMH0EeWf7cYredJJHQ" key="Author" value=""/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_HyB1McH0EeWf7cYredJJHQ" name="Board">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_HyB1MsH0EeWf7cYredJJHQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_Rkr3gMHzEeWf7cYredJJHQ"/>
+        <eSuperTypes xmi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//blocks/Block"/>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_HyB1NMH0EeWf7cYredJJHQ" name="MicroController">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_HyB1NcH0EeWf7cYredJJHQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_nifyoMHzEeWf7cYredJJHQ"/>
+        <eSuperTypes xmi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//blocks/Block"/>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_HyB1N8H0EeWf7cYredJJHQ" name="Memory">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_HyB1OMH0EeWf7cYredJJHQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_uK5C8MHzEeWf7cYredJJHQ"/>
+        <eSuperTypes xmi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//blocks/Block"/>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_HyB1OsH0EeWf7cYredJJHQ" name="NetDemand">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_HyB1O8H0EeWf7cYredJJHQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_wm81sMHzEeWf7cYredJJHQ"/>
+        <eSuperTypes xmi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//blocks/Block"/>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_HyB1PcH0EeWf7cYredJJHQ" name="GenericIO">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_HyB1PsH0EeWf7cYredJJHQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_4wyqoMHzEeWf7cYredJJHQ"/>
+        <eSuperTypes xmi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//blocks/Block"/>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EEnum" xmi:id="_HyB1QMH0EeWf7cYredJJHQ" name="MemoryType">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_HyB1QcH0EeWf7cYredJJHQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_CvcFEMH0EeWf7cYredJJHQ"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_HyB1QsH0EeWf7cYredJJHQ" name="RAM"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_HyB1Q8H0EeWf7cYredJJHQ" name="EnumerationLiteral1" value="1"/>
+      </eClassifiers>
+    </contents>
+    <contents xmi:type="ecore:EPackage" xmi:id="_d9GlsMHzEeWf7cYredJJHQ" name="RootElement" nsURI="http:///schemas/RootElement/_d9F-oMHzEeWf7cYredJJHQ/0" nsPrefix="RootElement">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_d9GltcHzEeWf7cYredJJHQ" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_d9GltsHzEeWf7cYredJJHQ" key="Version" value="0.0.1"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_d9Glt8HzEeWf7cYredJJHQ" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_d9GluMHzEeWf7cYredJJHQ" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_d9GlucHzEeWf7cYredJJHQ" key="Date" value="2016-01-23"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_d9GlusHzEeWf7cYredJJHQ" key="Author" value=""/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_d9GlscHzEeWf7cYredJJHQ" name="Board">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_d9GlssHzEeWf7cYredJJHQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_Rkr3gMHzEeWf7cYredJJHQ"/>
+        <eSuperTypes xmi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//blocks/Block"/>
+      </eClassifiers>
+    </contents>
+  </eAnnotations>
+  <packageImport xmi:type="uml:PackageImport" xmi:id="_YdF5wMHzEeWf7cYredJJHQ">
+    <importedPackage xmi:type="uml:Profile" href="pathmap://SysML_PROFILES/SysML.profile.uml#_Gx8MgLX7EduFmqQsrNB9lw"/>
+  </packageImport>
+  <packageImport xmi:type="uml:PackageImport" xmi:id="_YdF5wcHzEeWf7cYredJJHQ">
+    <importedPackage xmi:type="uml:Profile" href="pathmap://SysML_PROFILES/SysML.profile.uml#_fSw28LX7EduFmqQsrNB9lw"/>
+  </packageImport>
+  <packageImport xmi:type="uml:PackageImport" xmi:id="_YdF5wsHzEeWf7cYredJJHQ">
+    <importedPackage xmi:type="uml:Profile" href="pathmap://SysML_PROFILES/SysML.profile.uml#_rpx28LX7EduFmqQsrNB9lw"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_Rkr3gMHzEeWf7cYredJJHQ" name="Board">
+    <generalization xmi:type="uml:Generalization" xmi:id="_cNNVYMHzEeWf7cYredJJHQ">
+      <general xmi:type="uml:Stereotype" href="pathmap://SysML_PROFILES/SysML.profile.uml#_8J2A8LVAEdu2ieF4ON8UjA"/>
+    </generalization>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_nifyoMHzEeWf7cYredJJHQ" name="MicroController">
+    <generalization xmi:type="uml:Generalization" xmi:id="_v83W4MHzEeWf7cYredJJHQ">
+      <general xmi:type="uml:Stereotype" href="pathmap://SysML_PROFILES/SysML.profile.uml#_8J2A8LVAEdu2ieF4ON8UjA"/>
+    </generalization>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_e0frQMH0EeWf7cYredJJHQ" name="maker" type="_hBJwEMH0EeWf7cYredJJHQ"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_z3TWsMH0EeWf7cYredJJHQ" name="model">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_5W9dUMH0EeWf7cYredJJHQ" name="speed">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_uK5C8MHzEeWf7cYredJJHQ" name="Memory">
+    <generalization xmi:type="uml:Generalization" xmi:id="_veKBoMHzEeWf7cYredJJHQ">
+      <general xmi:type="uml:Stereotype" href="pathmap://SysML_PROFILES/SysML.profile.uml#_8J2A8LVAEdu2ieF4ON8UjA"/>
+    </generalization>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_Lyc9sMH0EeWf7cYredJJHQ" name="size">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_MzY2QMH0EeWf7cYredJJHQ" name="type" type="_CvcFEMH0EeWf7cYredJJHQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_wm81sMHzEeWf7cYredJJHQ" name="NetDemand">
+    <generalization xmi:type="uml:Generalization" xmi:id="_6o7Q8MHzEeWf7cYredJJHQ">
+      <general xmi:type="uml:Stereotype" href="pathmap://SysML_PROFILES/SysML.profile.uml#_8J2A8LVAEdu2ieF4ON8UjA"/>
+    </generalization>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_4wyqoMHzEeWf7cYredJJHQ" name="GenericIO">
+    <generalization xmi:type="uml:Generalization" xmi:id="_69Wo0MHzEeWf7cYredJJHQ">
+      <general xmi:type="uml:Stereotype" href="pathmap://SysML_PROFILES/SysML.profile.uml#_8J2A8LVAEdu2ieF4ON8UjA"/>
+    </generalization>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Enumeration" xmi:id="_CvcFEMH0EeWf7cYredJJHQ" name="MemoryType">
+    <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_EBUjsMH0EeWf7cYredJJHQ" name="RAM"/>
+    <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_FSYi8MH0EeWf7cYredJJHQ" name="ROM"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Enumeration" xmi:id="_hBJwEMH0EeWf7cYredJJHQ" name="MicroMakerType">
+    <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_iJa_sMH0EeWf7cYredJJHQ" name="ARM"/>
+    <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_kLbTsMH0EeWf7cYredJJHQ" name="TOSHIBA"/>
+    <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_miX88MH0EeWf7cYredJJHQ" name="MICHROCHIP"/>
+    <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_7_v-EMKwEeWMjs8O3a-FlQ" name="ATmega"/>
+  </packagedElement>
+</uml:Profile>

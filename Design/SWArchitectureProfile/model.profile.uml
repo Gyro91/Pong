@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Profile xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_-MQbgMH4EeWf7cYredJJHQ" name="SWArchitectureProfile">
+  <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_yOaUAMH5EeWf7cYredJJHQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <contents xmi:type="ecore:EPackage" xmi:id="_INDBYcKxEeWMjs8O3a-FlQ" name="SWArchitectureProfile" nsURI="http:///schemas/SWArchitectureProfile/_INDBYMKxEeWMjs8O3a-FlQ/2" nsPrefix="SWArchitectureProfile">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_INEPgMKxEeWMjs8O3a-FlQ" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_INEPgcKxEeWMjs8O3a-FlQ" key="Version" value="0.0.3"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_INEPgsKxEeWMjs8O3a-FlQ" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_INEPg8KxEeWMjs8O3a-FlQ" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_INEPhMKxEeWMjs8O3a-FlQ" key="Date" value="2016-01-24"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_INEPhcKxEeWMjs8O3a-FlQ" key="Author" value=""/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_INDBYsKxEeWMjs8O3a-FlQ" name="Thread">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_INDBY8KxEeWMjs8O3a-FlQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_D1qUAMH5EeWf7cYredJJHQ"/>
+        <eSuperTypes xmi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//blocks/Block"/>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_INDBZcKxEeWMjs8O3a-FlQ" name="PeriodicTask" eSuperTypes="_INDBYsKxEeWMjs8O3a-FlQ">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_INDBZsKxEeWMjs8O3a-FlQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_qJlh8MH5EeWf7cYredJJHQ"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_INDBZ8KxEeWMjs8O3a-FlQ" name="period" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Integer"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+    </contents>
+    <contents xmi:type="ecore:EPackage" xmi:id="_R3TNUcH6EeWf7cYredJJHQ" name="SWArchitectureProfile" nsURI="http:///schemas/SWArchitectureProfile/_R3TNUMH6EeWf7cYredJJHQ/1" nsPrefix="SWArchitectureProfile">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_R3T0YcH6EeWf7cYredJJHQ" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_R3T0YsH6EeWf7cYredJJHQ" key="Version" value="0.0.2"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_R3T0Y8H6EeWf7cYredJJHQ" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_R3T0ZMH6EeWf7cYredJJHQ" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_R3T0ZcH6EeWf7cYredJJHQ" key="Date" value="2016-01-23"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_R3T0ZsH6EeWf7cYredJJHQ" key="Author" value=""/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_R3TNUsH6EeWf7cYredJJHQ" name="Thread">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_R3TNU8H6EeWf7cYredJJHQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_D1qUAMH5EeWf7cYredJJHQ"/>
+        <eSuperTypes xmi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//blocks/Block"/>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_R3TNVcH6EeWf7cYredJJHQ" name="OSEKTASK" eSuperTypes="_R3TNUsH6EeWf7cYredJJHQ">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_R3TNVsH6EeWf7cYredJJHQ" source="http://www.eclipse.org/uml2/2.0.0/UML"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_R3TNV8H6EeWf7cYredJJHQ" name="priority" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Integer"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_R3TNWsH6EeWf7cYredJJHQ" name="OSEKPERIODICTASK" eSuperTypes="_R3TNVcH6EeWf7cYredJJHQ">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_R3TNW8H6EeWf7cYredJJHQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_qJlh8MH5EeWf7cYredJJHQ"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_R3TNXMH6EeWf7cYredJJHQ" name="period" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Integer"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+    </contents>
+    <contents xmi:type="ecore:EPackage" xmi:id="_yOaUAcH5EeWf7cYredJJHQ" name="RootElement" nsURI="http:///schemas/RootElement/_yOZs8MH5EeWf7cYredJJHQ/0" nsPrefix="RootElement">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_yOa7EcH5EeWf7cYredJJHQ" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_yOa7EsH5EeWf7cYredJJHQ" key="Version" value="0.0.1"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_yOa7E8H5EeWf7cYredJJHQ" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_yOa7FMH5EeWf7cYredJJHQ" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_yOa7FcH5EeWf7cYredJJHQ" key="Date" value="2016-01-23"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_yOa7FsH5EeWf7cYredJJHQ" key="Author" value=""/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_yOaUAsH5EeWf7cYredJJHQ" name="Thread">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_yOaUA8H5EeWf7cYredJJHQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_D1qUAMH5EeWf7cYredJJHQ"/>
+        <eSuperTypes xmi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//blocks/Block"/>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_yOaUBcH5EeWf7cYredJJHQ" name="OSEKTASK" eSuperTypes="_yOaUAsH5EeWf7cYredJJHQ">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_yOaUBsH5EeWf7cYredJJHQ" source="http://www.eclipse.org/uml2/2.0.0/UML"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_yOaUB8H5EeWf7cYredJJHQ" name="priority" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Integer"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_yOaUCsH5EeWf7cYredJJHQ" name="OSEKPERIODICTASK" eSuperTypes="_yOaUBcH5EeWf7cYredJJHQ">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_yOaUC8H5EeWf7cYredJJHQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_qJlh8MH5EeWf7cYredJJHQ"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_yOaUDMH5EeWf7cYredJJHQ" name="period" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Integer"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+    </contents>
+  </eAnnotations>
+  <packageImport xmi:type="uml:PackageImport" xmi:id="_BveDkMH5EeWf7cYredJJHQ">
+    <importedPackage xmi:type="uml:Profile" href="pathmap://SysML_PROFILES/SysML.profile.uml#_Gx8MgLX7EduFmqQsrNB9lw"/>
+  </packageImport>
+  <packageImport xmi:type="uml:PackageImport" xmi:id="_BvfRsMH5EeWf7cYredJJHQ">
+    <importedPackage xmi:type="uml:Profile" href="pathmap://SysML_PROFILES/SysML.profile.uml#_fSw28LX7EduFmqQsrNB9lw"/>
+  </packageImport>
+  <packageImport xmi:type="uml:PackageImport" xmi:id="_BvfRscH5EeWf7cYredJJHQ">
+    <importedPackage xmi:type="uml:Profile" href="pathmap://SysML_PROFILES/SysML.profile.uml#_rpx28LX7EduFmqQsrNB9lw"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_D1qUAMH5EeWf7cYredJJHQ" name="Thread">
+    <generalization xmi:type="uml:Generalization" xmi:id="_S4_wUMH5EeWf7cYredJJHQ">
+      <general xmi:type="uml:Stereotype" href="pathmap://SysML_PROFILES/SysML.profile.uml#_8J2A8LVAEdu2ieF4ON8UjA"/>
+    </generalization>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_qJlh8MH5EeWf7cYredJJHQ" name="PeriodicTask">
+    <generalization xmi:type="uml:Generalization" xmi:id="_GFEoQMKxEeWMjs8O3a-FlQ" general="_D1qUAMH5EeWf7cYredJJHQ"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_sogbcMH5EeWf7cYredJJHQ" name="period">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </ownedAttribute>
+  </packagedElement>
+</uml:Profile>
