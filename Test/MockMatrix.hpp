@@ -22,12 +22,12 @@ public:
 };
 
 
-class MockMatrix {
-private:
-	 RGB_Led matrix[ROWS][COLUMNS];
-
+class RGBmatrixPanel {
 public:
-	MockMatrix();
+	RGB_Led matrix[ROWS][COLUMNS];
+	bool status;
+
+	RGBmatrixPanel();
 	void drawPixel(int x, int y, int R, int G, int B);
 	void drawLine(int x1, int y1, int x2, int y2, int R, int G, int B);
 	void fill(int R, int G, int B);

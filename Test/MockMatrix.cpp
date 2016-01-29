@@ -33,8 +33,10 @@ void RGB_Led::turn_ON(int R, int G, int B)
 	color_G = B;
 }
 
-MockMatrix::MockMatrix()
+RGBmatrixPanel::RGBmatrixPanel()
 {
+
+
 	for (int i=0; i<ROWS; i++)
 		for (int j=0; j<COLUMNS; j++) {
 			matrix[i][j].state = false;
@@ -45,18 +47,18 @@ MockMatrix::MockMatrix()
 }
 
 
-void MockMatrix::drawPixel(int x, int y, int R, int G, int B)
+void RGBmatrixPanel::drawPixel(int x, int y, int R, int G, int B)
 {
 	matrix[x][y].turn_ON(R, G, B);
 }
 
-void MockMatrix::drawLine(int x1, int y1, int x2, int y2,
+void RGBmatrixPanel::drawLine(int x1, int y1, int x2, int y2,
 		int R, int G, int B)
 {
-	if ( x1 == x2 )
+	if (x1 == x2)
 		for (int i=y1; i<=y2; i++)
 			matrix[x1][i].turn_ON(R, G, B);
-	else if ( y1 == y2)
+	else if (y1 == y2)
 		for (int i=x1; i<=x2; i++)
 			matrix[i][y1].turn_ON(R, G, B);
 	else {
@@ -72,7 +74,7 @@ void MockMatrix::drawLine(int x1, int y1, int x2, int y2,
 
 }
 
-void MockMatrix::fill(int R, int G, int B)
+void RGBmatrixPanel::fill(int R, int G, int B)
 {
 	bool state = (R == 0 && G == 0 && B == 0) ? false : true;
 
@@ -84,9 +86,9 @@ void MockMatrix::fill(int R, int G, int B)
 				matrix[i][j].turn_OFF();
 }
 
-void MockMatrix::print()
+void RGBmatrixPanel::print()
 {
-	for (int i=0; i<ROWS; i++) {
+	for (int i= (ROWS - 1); i>=0; i--) {
 
 		for (int j=0; j<COLUMNS; j++) {
 			if (matrix[i][j].state)
