@@ -20,7 +20,43 @@
 RGBmatrixPanel matrix(A, B, C, D, CLK, LAT, OE, false);
 MapGame mg;
 
-int ledstatus = 0;
+class GraphicHandler {
+  int ledstate1, ledstate2, ledstate3;
+  unsigned long previousMillis = 0;
+
+public:
+
+  void update()
+  { 
+    unsigned long currentMillis;
+    currentMillis = millis();
+    if ((currentMillis - previousMillis) >= 100) {
+        previousMillis = currentMillis;
+        ledstate1 = digitalRead(BLEFT);
+        ledstate2 = digitalRead(BRIGHT);
+    }
+    
+    if (ledstate1 == HIGH) {
+        matrix.drawLine(mg.vaus.x, mg.vaus.lastL, mg.vaus.x, 
+            mg.vaus.lastR, matrix.Color333(BLACK));
+        mg.moveVaus(LEFT);
+        matrix.drawLine(mg.vaus.x, mg.vaus.lastL, mg.vaus.x, 
+            mg.vaus.lastR, matrix.Color333(BLUE));
+        ledstate1 = false;
+
+    }
+    if (ledstate2 == HIGH) {
+        matrix.drawLine(mg.vaus.x, mg.vaus.lastL, mg.vaus.x, 
+            mg.vaus.lastR, matrix.Color333(BLACK));
+        mg.moveVaus(RIGHT);
+        matrix.drawLine(mg.vaus.x, mg.vaus.lastL, mg.vaus.x, 
+            mg.vaus.lastR, matrix.Color333(BLUE));
+        ledstate2 = false;
+    }
+    
+  }
+};
+
 
 void setup()
 {
@@ -32,25 +68,10 @@ void setup()
   
 }
 
+GraphicHandler gh;
 void loop() 
 {
-  matrix.drawLine(mg.vaus.x, mg.vaus.lastL, mg.vaus.x, mg.vaus.lastR,matrix.Color333(BLUE));
-    ledstatus = digitalRead(BRIGHT);   // lettura dell'ingresso
- if (ledstatus == HIGH) {               // controlla se il pulsante è premuto
-    
-    matrix.drawLine(mg.vaus.x, mg.vaus.lastL, mg.vaus.x, mg.vaus.lastR, matrix.Color333(BLACK));
-    mg.moveVaus(RIGHT);
-    matrix.drawLine(mg.vaus.x, mg.vaus.lastL, mg.vaus.x, mg.vaus.lastR, matrix.Color333(BLUE));
-    delay(200);
-  }
-   ledstatus = digitalRead(BLEFT);   // lettura dell'ingresso
- if (ledstatus == HIGH) {               // controlla se il pulsante è premuto
-    matrix.drawLine(mg.vaus.x, mg.vaus.lastL, mg.vaus.x, mg.vaus.lastR, matrix.Color333(BLACK));
-    mg.moveVaus(LEFT);
-    matrix.drawLine(mg.vaus.x, mg.vaus.lastL, mg.vaus.x, mg.vaus.lastR, matrix.Color333(BLUE));
-    delay(200);
-  }
-
-
+  
+  gh.update();
  
 }
