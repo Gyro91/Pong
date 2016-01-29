@@ -8,6 +8,12 @@
 #ifndef ARKANOID_HPP_
 #define ARKANOID_HPP_
 
+#define Vaus_yl 13
+#define Vaus_yr 17
+#define LineVaus 1
+
+
+
 #define NOTEST
 
 
@@ -36,7 +42,9 @@
 #endif
 
 
-typedef enum Direction{LEFT, RIGHT} Direction;
+typedef enum DirectionVaus{LEFT, RIGHT} DirectionVaus;
+typedef enum DirectionBall{NL, N, NR, SL, S, SR} DirectionBall;
+
 
 class Vaus {
 public:
@@ -46,21 +54,30 @@ public:
   Vaus();
 };
 
+class Ball {
+public:
+	int x, y;
+	DirectionBall dirB;
+	Ball();
+};
+
 class MapGame {
 
 #ifdef TEST
 public:
-  Vaus vaus;
   RGBmatrixPanel matrix;
 #endif
 
-#ifdef NOTEST
-public:
-  Vaus vaus;
-#endif
 
 public:
-  void moveVaus(Direction dir);
+  Vaus vaus;
+  Ball ball;
+
+  void checkDirBall();
+  void invertDirBall();
+  void moveVaus(DirectionVaus dirV);
+  void moveBall();
+  bool checkImpactVaus(int x, int y);
   /*
   void resizeVaus(int amount);
   void growVaus(int amount);

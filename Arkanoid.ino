@@ -3,6 +3,7 @@
 // Colours
 #define BLUE 0, 0, 7
 #define BLACK 0, 0, 0
+#define RED 7, 0, 0
 
 // Constants for the matrix
 #define CLK 8  
@@ -19,41 +20,65 @@
 
 RGBmatrixPanel matrix(A, B, C, D, CLK, LAT, OE, false);
 MapGame mg;
+int START = 0;
+
 
 class GraphicHandler {
   int ledstate1, ledstate2, ledstate3;
   unsigned long previousMillis = 0;
+  unsigned long previousMillis2 = 0;
 
 public:
-
+  void drawVaus() {
+      matrix.drawLine(mg.vaus.x, mg.vaus.lastL, mg.vaus.x, 
+          mg.vaus.lastR, matrix.Color333(BLUE));
+  }
+  void deleteVaus() {
+      matrix.drawLine(mg.vaus.x, mg.vaus.lastL, mg.vaus.x, 
+          mg.vaus.lastR, matrix.Color333(BLACK));
+  }
   void update()
   { 
-    unsigned long currentMillis;
-    currentMillis = millis();
+    unsigned long currentMillis, currentMillis2;
+    currentMillis2 = currentMillis = millis();
     if ((currentMillis - previousMillis) >= 100) {
         previousMillis = currentMillis;
         ledstate1 = digitalRead(BLEFT);
         ledstate2 = digitalRead(BRIGHT);
+        ledstate3 = digitalRead(BFIRE);
+    }
+    
+    if (START == 1 && (currentMillis2 - previousMillis2) >= 200) {
+        previousMillis2 = currentMillis2;
+        matrix.drawPixel(mg.ball.x, mg.ball.y, 
+            matrix.Color333(BLACK));
+        mg.moveBall();
+        matrix.drawPixel(mg.ball.x, mg.ball.y, 
+            matrix.Color333(RED));
     }
     
     if (ledstate1 == HIGH) {
-        matrix.drawLine(mg.vaus.x, mg.vaus.lastL, mg.vaus.x, 
-            mg.vaus.lastR, matrix.Color333(BLACK));
+        deleteVaus();
         mg.moveVaus(LEFT);
-        matrix.drawLine(mg.vaus.x, mg.vaus.lastL, mg.vaus.x, 
-            mg.vaus.lastR, matrix.Color333(BLUE));
+        drawVaus();
         ledstate1 = false;
-
     }
     if (ledstate2 == HIGH) {
-        matrix.drawLine(mg.vaus.x, mg.vaus.lastL, mg.vaus.x, 
-            mg.vaus.lastR, matrix.Color333(BLACK));
+        deleteVaus();
         mg.moveVaus(RIGHT);
-        matrix.drawLine(mg.vaus.x, mg.vaus.lastL, mg.vaus.x, 
-            mg.vaus.lastR, matrix.Color333(BLUE));
+        drawVaus();
         ledstate2 = false;
     }
-    
+
+    if (ledstate3 == HIGH) {
+        START = 1;
+        matrix.drawPixel(mg.ball.x, mg.ball.y, 
+            matrix.Color333(BLACK));
+        mg.moveBall();
+        matrix.drawPixel(mg.ball.x, mg.ball.y, 
+            matrix.Color333(RED));
+        delay(50);
+    }
   }
 };
 
@@ -64,7 +89,10 @@ void setup()
   pinMode(BFIRE, INPUT);
   pinMode(BLEFT, INPUT);
   pinMode(BRIGHT, INPUT);
-  matrix.drawLine(mg.vaus.x, mg.vaus.lastL, mg.vaus.x, mg.vaus.lastR,matrix.Color333(BLUE));
+  matrix.drawLine(mg.vaus.x, mg.vaus.lastL, mg.vaus.x, 
+      mg.vaus.lastR,matrix.Color333(BLUE));
+  matrix.drawPixel(mg.ball.x, mg.ball.y, 
+      matrix.Color333(RED));
   
 }
 
