@@ -1,7 +1,14 @@
 #include "Arkanoid.hpp"
 
+int casual = 0;
+/* Constructor for the Wall */
 
-
+Wall::Wall()
+{
+	for (int i=0; i<RWALL; i++)
+		for(int j=0; j<CWALL; j++)
+			bricks[i][j] = true;
+}
 
 /* Constructor for the Vaus */
 
@@ -26,7 +33,8 @@ Ball::Ball()
 void MapGame::displayVaus()
 {
 	#ifdef TEST
-	matrix.drawLine(vaus.x, vaus.lastL, vaus.x, vaus.lastR, BLUE);
+	matrix.drawLine(vaus.x, vaus.lastL,
+			vaus.x, vaus.lastR, BLUE);
 	#endif
 }
 
@@ -36,6 +44,17 @@ void MapGame::displayVaus()
  * it will have a value of NL (inverted!)
  * */
 
+void MapGame::modBallDirImpact(int x, int y)
+{
+	if (y > (vaus.lastL + 1) && y < (vaus.lastR - 1))
+				ball.dirB = S;
+	else if (y <= (vaus.lastL + 1) || y == (vaus.lastL - 1))
+				ball.dirB = SR;
+	else if (y >= (vaus.lastR - 1) || y == (vaus.lastR + 1))
+				ball.dirB = SL;
+}
+
+
 bool MapGame::checkImpactVaus(int x, int y)
 {
 bool result = false;
@@ -44,37 +63,21 @@ bool result = false;
 		if ((x - 1) == vaus.x && y <= vaus.lastR
 				&& y>= vaus.lastL) {
 			result = true;
-			if (y > vaus.lastL && y < vaus.lastR)
-				ball.dirB = S;
-			else if (y == vaus.lastL || y == (vaus.lastL - 1))
-				ball.dirB = SR;
-			else if (y == vaus.lastR || y == (vaus.lastR + 1))
-				ball.dirB = SL;
+			modBallDirImpact(x,y);
 		}
 		break;
 	case SL:
 		if ((x - 1) == vaus.x && (y - 1) <= vaus.lastR
 				&& (y - 1) >= vaus.lastL) {
 			result = true;
-			if (y > vaus.lastL && y < vaus.lastR)
-							ball.dirB = S;
-			else if (y == vaus.lastL || y == (vaus.lastL - 1))
-				ball.dirB = SR;
-			else if (y == vaus.lastR || y == (vaus.lastR + 1))
-						ball.dirB = SL;
+			modBallDirImpact(x,y);
 		}
 		break;
 	case SR:
-		if ((x - 1) == vaus.x && (y - 1) <= vaus.lastR
+		if ((x - 1) == vaus.x && (y + 1) <= vaus.lastR
 				&& (y + 1) >= vaus.lastL) {
 			result = true;
-			if (y > vaus.lastL && y < vaus.lastR)
-				ball.dirB = S;
-			else if (y == vaus.lastL || y == (vaus.lastL - 1))
-				ball.dirB = SR;
-			else if (y == vaus.lastR || y == (vaus.lastR + 1))
-				ball.dirB = SL;
-		}
+			modBallDirImpact(x,y);		}
 		break;
 	}
 	return result;
@@ -102,23 +105,29 @@ void MapGame::checkDirBall()
 				invertDirBall();
 			break;
 		case S:
-			if ((ball.x - 1) < 0 || checkImpactVaus((ball.x), ball.y))
+			if ((ball.x - 1) < 0 ||
+					checkImpactVaus((ball.x), ball.y))
 				invertDirBall();
 			break;
 		case SL:
 			if ((ball.y - 1) < 0)
-				shotShore();
-			else if ((ball.x - 1) < 0 || checkImpactVaus((ball.x), (ball.y)))
+						shotShore();
+			if ((ball.x - 1) < 0 ||
+					checkImpactVaus((ball.x), (ball.y)))
 				invertDirBall();
+
 			break;
 		case SR:
 			if ((ball.y + 1) >= CMATRIX)
-				shotShore();
-			else if ((ball.x - 1) < 0 || checkImpactVaus((ball.x), (ball.y)))
-				invertDirBall();
+							shotShore();
+			if ((ball.x - 1) < 0 ||
+					checkImpactVaus((ball.x), (ball.y)))
+							invertDirBall();
+
 			break;
 	}
 }
+
 /* It checks if there's an impact, then moves the ball */
 
 void MapGame::moveBall()
@@ -184,7 +193,14 @@ void MapGame::invertDirBall()
 {
 	switch(ball.dirB) {
 		case N:
-			ball.dirB = S;
+			if (casual == 0) {
+				ball.dirB = SR;
+				casual = 1;
+			}
+			else {
+				casual = 0;
+				ball.dirB = SL;
+			}
 			break;
 		case NR:
 			ball.dirB = SR;
@@ -210,7 +226,8 @@ void MapGame::invertDirBall()
 void MapGame::moveVaus(DirectionVaus dir)
 {
 	#ifdef TEST
-	matrix.drawLine(vaus.x, vaus.lastL, vaus.x, vaus.lastR, BLACK);
+	matrix.drawLine(vaus.x, vaus.lastL,
+			vaus.x, vaus.lastR, BLACK);
 	#endif
 
   if (dir == LEFT && vaus.lastL > 0) {

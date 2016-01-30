@@ -68,24 +68,21 @@ public:
   { 
     unsigned long currentMillis, currentMillis2;
     currentMillis2 = currentMillis = millis();
-    if ((currentMillis - previousMillis) >= 50) {
+    if ((currentMillis - previousMillis) >= 25) {
         previousMillis = currentMillis;
         ledstate1 = digitalRead(BLEFT);
         ledstate2 = digitalRead(BRIGHT);
         ledstate3 = digitalRead(BFIRE); 
         buttonsAction(ledstate1, ledstate2, ledstate3);
-    }
-    
-    else if (START == 1 && (currentMillis2 - previousMillis2) >= 100) {
+    }   
+    else if (START == 1 && (currentMillis2 - previousMillis2) >= 60) {
         previousMillis2 = currentMillis2;
         matrix.drawPixel(mg.ball.x, mg.ball.y, 
             matrix.Color333(BLACK));
         mg.moveBall();
         matrix.drawPixel(mg.ball.x, mg.ball.y, 
             matrix.Color333(RED));
-    }
-    
- 
+       }
   }
 };
 
@@ -105,8 +102,8 @@ void setup()
       matrix.Color333(RED));
 
   // Draw Wall
-  for (int i=(RMATRIX - 1); i>=(RMATRIX - RWALL); i--)
-      matrix.drawLine(i, 0, i, 31, matrix.Color333(GREEN));
+  for (int i=(RMATRIX - 5); i>=(RMATRIX - 5 - RWALL); i--)
+      matrix.drawLine(i, 5, i, 26, matrix.Color333(GREEN));
 }
 
 GraphicHandler gh;

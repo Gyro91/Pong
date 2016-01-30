@@ -9,7 +9,7 @@
 #define ARKANOID_HPP_
 
 /* Starting position for the Vaus */
-#define Vaus_yl 13
+#define Vaus_yl 11
 #define Vaus_yr 17
 #define LineVaus 1
 
@@ -51,6 +51,12 @@ typedef enum DirectionVaus{LEFT, RIGHT} DirectionVaus;
 typedef enum DirectionBall{NL, N, NR, SL, S, SR} DirectionBall;
 
 
+class Wall {
+public:
+	bool bricks[RWALL][CWALL];
+	Wall();
+};
+
 class Vaus {
 public:
   int dimVaus;  // Dimension of the Vaus
@@ -84,6 +90,7 @@ public:
   void moveBall();
   void shotShore();
   bool checkImpactVaus(int x, int y);
+  void modBallDirImpact(int x, int y);
   /*
   void resizeVaus(int amount);
   void growVaus(int amount);
