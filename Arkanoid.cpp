@@ -1,7 +1,6 @@
 #include "Arkanoid.hpp"
 
-#define ROWS 32
-#define COLUMNS 32
+
 
 
 /* Constructor for the Vaus */
@@ -81,23 +80,25 @@ bool result = false;
 	return result;
 }
 
+/* It checks if ball must be inverted or it has to be done a hit shore */
+
 void MapGame::checkDirBall()
 {
 	switch(ball.dirB) {
 		case N:
-			if ((ball.x + 1) >= ROWS)
+			if ((ball.x + 1) >= RMATRIX)
 				invertDirBall();
 			break;
 		case NR:
-			if	((ball.y + 1) >= COLUMNS)
+			if	((ball.y + 1) >= CMATRIX)
 				shotShore();
-			else if ((ball.x + 1) >= ROWS)
+			else if ((ball.x + 1) >= RMATRIX)
 				invertDirBall();
 			break;
 		case NL:
 			if ((ball.y - 1) < 0)
 				shotShore();
-			else if ((ball.x + 1) >= ROWS)
+			else if ((ball.x + 1) >= RMATRIX)
 				invertDirBall();
 			break;
 		case S:
@@ -111,13 +112,14 @@ void MapGame::checkDirBall()
 				invertDirBall();
 			break;
 		case SR:
-			if ((ball.y + 1) >= COLUMNS)
+			if ((ball.y + 1) >= CMATRIX)
 				shotShore();
 			else if ((ball.x - 1) < 0 || checkImpactVaus((ball.x), (ball.y)))
 				invertDirBall();
 			break;
 	}
 }
+/* It checks if there's an impact, then moves the ball */
 
 void MapGame::moveBall()
 {
@@ -149,6 +151,8 @@ void MapGame::moveBall()
 	}
 }
 
+/* It changes the direction for a shot shore */
+
 void MapGame::shotShore()
 {
 	switch(ball.dirB) {
@@ -174,6 +178,7 @@ void MapGame::shotShore()
 	}
 }
 
+/* It inverts the direction of the Ball */
 
 void MapGame::invertDirBall()
 {
@@ -200,6 +205,7 @@ void MapGame::invertDirBall()
 }
 
 
+/* Moves the Vaus in the passed direction */
 
 void MapGame::moveVaus(DirectionVaus dir)
 {
@@ -216,6 +222,8 @@ void MapGame::moveVaus(DirectionVaus dir)
     vaus.lastR++;
   }
 
+  #ifdef TEST
   displayVaus();
+  #endif
 }
 

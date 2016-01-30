@@ -4,6 +4,7 @@
 #define BLUE 0, 0, 7
 #define BLACK 0, 0, 0
 #define RED 7, 0, 0
+#define GREEN 0, 7, 0
 
 // Constants for the matrix
 #define CLK 8  
@@ -95,11 +96,17 @@ void setup()
   pinMode(BFIRE, INPUT);
   pinMode(BLEFT, INPUT);
   pinMode(BRIGHT, INPUT);
+
+  // Draw Vaus
   matrix.drawLine(mg.vaus.x, mg.vaus.lastL, mg.vaus.x, 
       mg.vaus.lastR,matrix.Color333(BLUE));
+  // Draw Ball
   matrix.drawPixel(mg.ball.x, mg.ball.y, 
       matrix.Color333(RED));
-  
+
+  // Draw Wall
+  for (int i=(RMATRIX - 1); i>=(RMATRIX - RWALL); i--)
+      matrix.drawLine(i, 0, i, 31, matrix.Color333(GREEN));
 }
 
 GraphicHandler gh;

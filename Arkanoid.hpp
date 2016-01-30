@@ -8,11 +8,18 @@
 #ifndef ARKANOID_HPP_
 #define ARKANOID_HPP_
 
+/* Starting position for the Vaus */
 #define Vaus_yl 13
 #define Vaus_yr 17
 #define LineVaus 1
 
+/* Rows&Columns for the Matrix */
+#define RMATRIX 32
+#define CMATRIX 32
 
+/* Rows&Columns for the Wall */
+#define RWALL 4
+#define CWALL 32
 
 #define NOTEST
 
@@ -29,11 +36,9 @@
 
 #endif
 
-//  Constants and libraries for the application
+// Libraries for the application
 
 #ifdef NOTEST
-
-/* When the library is used for the application */
 
 #include <Adafruit_GFX.h>   // Core graphics library
 #include <RGBmatrixPanel.h> // Hardware-specific library
