@@ -77,6 +77,7 @@ public:
   void invertDirBall();
   void moveVaus(DirectionVaus dirV);
   void moveBall();
+  void shotShore();
   bool checkImpactVaus(int x, int y);
   /*
   void resizeVaus(int amount);

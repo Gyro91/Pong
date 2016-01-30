@@ -14,8 +14,8 @@
 #define C   A2
 #define D   A3
 // Buttons
-#define BFIRE 12
-#define BLEFT 11
+#define BFIRE 11
+#define BLEFT 12
 #define BRIGHT 13
 
 RGBmatrixPanel matrix(A, B, C, D, CLK, LAT, OE, false);
@@ -37,26 +37,8 @@ public:
       matrix.drawLine(mg.vaus.x, mg.vaus.lastL, mg.vaus.x, 
           mg.vaus.lastR, matrix.Color333(BLACK));
   }
-  void update()
-  { 
-    unsigned long currentMillis, currentMillis2;
-    currentMillis2 = currentMillis = millis();
-    if ((currentMillis - previousMillis) >= 100) {
-        previousMillis = currentMillis;
-        ledstate1 = digitalRead(BLEFT);
-        ledstate2 = digitalRead(BRIGHT);
-        ledstate3 = digitalRead(BFIRE);
-    }
-    
-    if (START == 1 && (currentMillis2 - previousMillis2) >= 200) {
-        previousMillis2 = currentMillis2;
-        matrix.drawPixel(mg.ball.x, mg.ball.y, 
-            matrix.Color333(BLACK));
-        mg.moveBall();
-        matrix.drawPixel(mg.ball.x, mg.ball.y, 
-            matrix.Color333(RED));
-    }
-    
+  void buttonsAction(int ledstate1, int ledstate2, int ledstate3)
+  {
     if (ledstate1 == HIGH) {
         deleteVaus();
         mg.moveVaus(LEFT);
@@ -79,6 +61,30 @@ public:
             matrix.Color333(RED));
         delay(50);
     }
+  }
+  
+  void update()
+  { 
+    unsigned long currentMillis, currentMillis2;
+    currentMillis2 = currentMillis = millis();
+    if ((currentMillis - previousMillis) >= 50) {
+        previousMillis = currentMillis;
+        ledstate1 = digitalRead(BLEFT);
+        ledstate2 = digitalRead(BRIGHT);
+        ledstate3 = digitalRead(BFIRE); 
+        buttonsAction(ledstate1, ledstate2, ledstate3);
+    }
+    
+    else if (START == 1 && (currentMillis2 - previousMillis2) >= 100) {
+        previousMillis2 = currentMillis2;
+        matrix.drawPixel(mg.ball.x, mg.ball.y, 
+            matrix.Color333(BLACK));
+        mg.moveBall();
+        matrix.drawPixel(mg.ball.x, mg.ball.y, 
+            matrix.Color333(RED));
+    }
+    
+ 
   }
 };
 

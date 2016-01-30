@@ -3,6 +3,9 @@
 #define ROWS 32
 #define COLUMNS 32
 
+
+/* Constructor for the Vaus */
+
 Vaus::Vaus()
 {
 	dimVaus = 5;
@@ -11,6 +14,8 @@ Vaus::Vaus()
 	x = LineVaus;
 }
 
+/* Constructor for the Ball */
+
 Ball::Ball()
 {
 	x = LineVaus + 1;
@@ -18,12 +23,19 @@ Ball::Ball()
 	dirB = N;
 }
 
+/* Useful only for Testing Mode */
 void MapGame::displayVaus()
 {
 	#ifdef TEST
 	matrix.drawLine(vaus.x, vaus.lastL, vaus.x, vaus.lastR, BLUE);
 	#endif
 }
+
+/* It checks if there's an impact with the Vaus and assigned value
+ * to the direction in order to be modified correctly in checkDirBall
+ * If I assigned here a value of SR it's because i want that in that case
+ * it will have a value of NL (inverted!)
+ * */
 
 bool MapGame::checkImpactVaus(int x, int y)
 {
@@ -33,9 +45,11 @@ bool result = false;
 		if ((x - 1) == vaus.x && y <= vaus.lastR
 				&& y>= vaus.lastL) {
 			result = true;
-			if (y < (vaus.lastL + vaus.lastR) / 2)
+			if (y > vaus.lastL && y < vaus.lastR)
+				ball.dirB = S;
+			else if (y == vaus.lastL || y == (vaus.lastL - 1))
 				ball.dirB = SR;
-			else if (y > (vaus.lastL + vaus.lastR) / 2)
+			else if (y == vaus.lastR || y == (vaus.lastR + 1))
 				ball.dirB = SL;
 		}
 		break;
@@ -43,9 +57,11 @@ bool result = false;
 		if ((x - 1) == vaus.x && (y - 1) <= vaus.lastR
 				&& (y - 1) >= vaus.lastL) {
 			result = true;
-			if (y < (vaus.lastL + vaus.lastR) / 2)
+			if (y > vaus.lastL && y < vaus.lastR)
+							ball.dirB = S;
+			else if (y == vaus.lastL || y == (vaus.lastL - 1))
 				ball.dirB = SR;
-			else if (y > (vaus.lastL + vaus.lastR) / 2)
+			else if (y == vaus.lastR || y == (vaus.lastR + 1))
 						ball.dirB = SL;
 		}
 		break;
@@ -53,9 +69,11 @@ bool result = false;
 		if ((x - 1) == vaus.x && (y - 1) <= vaus.lastR
 				&& (y + 1) >= vaus.lastL) {
 			result = true;
-			if (y < (vaus.lastL + vaus.lastR) / 2)
+			if (y > vaus.lastL && y < vaus.lastR)
+				ball.dirB = S;
+			else if (y == vaus.lastL || y == (vaus.lastL - 1))
 				ball.dirB = SR;
-			else if (y > (vaus.lastL + vaus.lastR) / 2)
+			else if (y == vaus.lastR || y == (vaus.lastR + 1))
 				ball.dirB = SL;
 		}
 		break;
@@ -71,11 +89,15 @@ void MapGame::checkDirBall()
 				invertDirBall();
 			break;
 		case NR:
-			if ((ball.x + 1) >= ROWS || (ball.y + 1) >= COLUMNS)
+			if	((ball.y + 1) >= COLUMNS)
+				shotShore();
+			else if ((ball.x + 1) >= ROWS)
 				invertDirBall();
 			break;
 		case NL:
-			if ((ball.x + 1) >= ROWS || (ball.y - 1) < 0)
+			if ((ball.y - 1) < 0)
+				shotShore();
+			else if ((ball.x + 1) >= ROWS)
 				invertDirBall();
 			break;
 		case S:
@@ -83,13 +105,15 @@ void MapGame::checkDirBall()
 				invertDirBall();
 			break;
 		case SL:
-			if ((ball.x - 1) < 0 || (ball.y - 1) < 0
-					|| checkImpactVaus((ball.x), (ball.y)))
+			if ((ball.y - 1) < 0)
+				shotShore();
+			else if ((ball.x - 1) < 0 || checkImpactVaus((ball.x), (ball.y)))
 				invertDirBall();
 			break;
 		case SR:
-			if ((ball.x - 1) < 0 || (ball.y + 1) >= COLUMNS
-					|| checkImpactVaus((ball.x), (ball.y)))
+			if ((ball.y + 1) >= COLUMNS)
+				shotShore();
+			else if ((ball.x - 1) < 0 || checkImpactVaus((ball.x), (ball.y)))
 				invertDirBall();
 			break;
 	}
@@ -125,6 +149,32 @@ void MapGame::moveBall()
 	}
 }
 
+void MapGame::shotShore()
+{
+	switch(ball.dirB) {
+		case N:
+			ball.dirB = S;
+			break;
+		case NR:
+			ball.dirB = NL;
+			break;
+		case NL:
+			ball.dirB = NR;
+			break;
+		case S:
+			ball.dirB = N;
+			break;
+		case SR:
+			ball.dirB = SL;
+			break;
+		case SL:
+			ball.dirB = SR;
+			break;
+
+	}
+}
+
+
 void MapGame::invertDirBall()
 {
 	switch(ball.dirB) {
@@ -132,10 +182,10 @@ void MapGame::invertDirBall()
 			ball.dirB = S;
 			break;
 		case NR:
-			ball.dirB = SL;
+			ball.dirB = SR;
 			break;
 		case NL:
-			ball.dirB = SR;
+			ball.dirB = SL;
 			break;
 		case S:
 			ball.dirB = N;
