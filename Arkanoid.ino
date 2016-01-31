@@ -1,5 +1,5 @@
-
 #include "Arkanoid.hpp"
+
 // Colours
 #define BLUE 0, 0, 7
 #define BLACK 0, 0, 0
@@ -16,40 +16,65 @@
 #define D   A3
 // Buttons
 #define BFIRE 11
-#define BLEFT 12
-#define BRIGHT 13
-
-RGBmatrixPanel matrix(A, B, C, D, CLK, LAT, OE, false);
+#define BLEFT1 12
+#define BRIGHT1 13
+#define BLEFT2 A4
+#define BRIGHT2 A5
 MapGame mg;
-int START = 0;
+RGBmatrixPanel matrix(A, B, C, D, CLK, LAT, OE, false);
+
+unsigned char START = 0;
+
 
 
 class GraphicHandler {
-  int ledstate1, ledstate2, ledstate3;
+  int ledstate1, ledstate2, ledstate3, ledstate4, ledstate5;
   unsigned long previousMillis = 0;
   unsigned long previousMillis2 = 0;
 
 public:
-  void drawVaus() {
-      matrix.drawLine(mg.vaus.x, mg.vaus.lastL, mg.vaus.x, 
-          mg.vaus.lastR, matrix.Color333(BLUE));
+  void drawPad1() {
+      matrix.drawLine(mg.pad1.x, mg.pad1.lastL, mg.pad1.x, 
+          mg.pad1.lastR, matrix.Color333(BLUE));
   }
-  void deleteVaus() {
-      matrix.drawLine(mg.vaus.x, mg.vaus.lastL, mg.vaus.x, 
-          mg.vaus.lastR, matrix.Color333(BLACK));
+   void drawPad2() {
+      matrix.drawLine(mg.pad2.x, mg.pad2.lastL, mg.pad2.x, 
+          mg.pad2.lastR, matrix.Color333(BLUE));
   }
-  void buttonsAction(int ledstate1, int ledstate2, int ledstate3)
+  void deletePad1() {
+      matrix.drawLine(mg.pad1.x, mg.pad1 .lastL, mg.pad1.x, 
+          mg.pad1.lastR, matrix.Color333(BLACK));
+  }
+
+  void deletePad2() {
+      matrix.drawLine(mg.pad2.x, mg.pad2.lastL, mg.pad2.x, 
+          mg.pad2.lastR, matrix.Color333(BLACK));
+  }
+  void buttonsAction()
   {
     if (ledstate1 == HIGH) {
-        deleteVaus();
-        mg.moveVaus(LEFT);
-        drawVaus();
+        deletePad1();
+        mg.movePad1(LEFT);
+        drawPad1();
         ledstate1 = false;
     }
     if (ledstate2 == HIGH) {
-        deleteVaus();
-        mg.moveVaus(RIGHT);
-        drawVaus();
+        deletePad1();
+        mg.movePad1(RIGHT);
+        drawPad1();
+        ledstate2 = false;
+    }
+
+    if (ledstate4 == LOW) {
+        deletePad2();
+        mg.movePad2(LEFT);
+        drawPad2();
+        ledstate1 = false;
+    }
+    if (ledstate5 == LOW) { //A5
+        deletePad2();
+        mg.movePad2(RIGHT);
+        drawPad2();
         ledstate2 = false;
     }
 
@@ -66,17 +91,19 @@ public:
   
   void update()
   { 
-    unsigned long currentMillis, currentMillis2;
-    currentMillis2 = currentMillis = millis();
-    if ((currentMillis - previousMillis) >= 25) {
+    unsigned long currentMillis;
+    currentMillis = millis();
+    if ((currentMillis - previousMillis) >= 50) {
         previousMillis = currentMillis;
-        ledstate1 = digitalRead(BLEFT);
-        ledstate2 = digitalRead(BRIGHT);
-        ledstate3 = digitalRead(BFIRE); 
-        buttonsAction(ledstate1, ledstate2, ledstate3);
+        ledstate1 = digitalRead(BLEFT1);
+        ledstate2 = digitalRead(BRIGHT1);
+        ledstate3 = digitalRead(BFIRE);
+        ledstate4 = digitalRead(BLEFT2);
+        ledstate5 = digitalRead(BRIGHT2); 
+        buttonsAction();
     }   
-    else if (START == 1 && (currentMillis2 - previousMillis2) >= 60) {
-        previousMillis2 = currentMillis2;
+    else if (START == 1 && (currentMillis - previousMillis2) >= 40) {
+        previousMillis2 = currentMillis;
         matrix.drawPixel(mg.ball.x, mg.ball.y, 
             matrix.Color333(BLACK));
         mg.moveBall();
@@ -88,22 +115,27 @@ public:
 
 
 void setup()
-{
+{ 
+ 
   matrix.begin();
   pinMode(BFIRE, INPUT);
-  pinMode(BLEFT, INPUT);
-  pinMode(BRIGHT, INPUT);
+  pinMode(BLEFT1, INPUT);
+  pinMode(BRIGHT1, INPUT);
+  pinMode(BLEFT2, INPUT);
+  pinMode(BRIGHT2, INPUT);
 
-  // Draw Vaus
-  matrix.drawLine(mg.vaus.x, mg.vaus.lastL, mg.vaus.x, 
-      mg.vaus.lastR,matrix.Color333(BLUE));
+  // Draw Paddle1
+  matrix.drawLine(mg.pad1.x, mg.pad1.lastL, mg.pad1.x, 
+      mg.pad1.lastR,matrix.Color333(BLUE));
+
+  // Draw Paddle2
+     matrix.drawLine(mg.pad2.x, mg.pad2.lastL, mg.pad2.x, 
+      mg.pad2.lastR,matrix.Color333(BLUE));
+      
   // Draw Ball
   matrix.drawPixel(mg.ball.x, mg.ball.y, 
       matrix.Color333(RED));
 
-  // Draw Wall
-  for (int i=(RMATRIX - 5); i>=(RMATRIX - 5 - RWALL); i--)
-      matrix.drawLine(i, 5, i, 26, matrix.Color333(GREEN));
 }
 
 GraphicHandler gh;
@@ -111,5 +143,6 @@ void loop()
 {
   
   gh.update();
+  
  
 }

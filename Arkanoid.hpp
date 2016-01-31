@@ -19,7 +19,9 @@
 
 /* Rows&Columns for the Wall */
 #define RWALL 4
-#define CWALL 32
+#define CWALL 20
+#define OFFSET 5
+
 
 #define NOTEST
 
@@ -50,24 +52,28 @@
 typedef enum DirectionVaus{LEFT, RIGHT} DirectionVaus;
 typedef enum DirectionBall{NL, N, NR, SL, S, SR} DirectionBall;
 
-
-class Wall {
+class Brick {
 public:
-	bool bricks[RWALL][CWALL];
-	Wall();
+	int x1, y1, x2, y2;
 };
 
-class Vaus {
+class Pad1 {
 public:
-  int dimVaus;  // Dimension of the Vaus
-  int lastL, lastR; // y coordinates
-  int x;  // coordinate x
-  Vaus();
+  unsigned char lastL, lastR; // y coordinates
+  unsigned char x;  // coordinate x
+  Pad1();
+};
+
+class Pad2 {
+public:
+  unsigned char lastL, lastR; // y coordinates
+  unsigned char x;  // coordinate x
+  Pad2();
 };
 
 class Ball {
 public:
-	int x, y;
+	unsigned char x, y;
 	DirectionBall dirB;
 	Ball();
 };
@@ -79,22 +85,23 @@ public:
   RGBmatrixPanel matrix;
 #endif
 
-
 public:
-  Vaus vaus;
+  Pad1 pad1;
+  Pad2 pad2;
   Ball ball;
 
   void checkDirBall();
   void invertDirBall();
-  void moveVaus(DirectionVaus dirV);
+  void movePad1(DirectionVaus dirV);
+  void movePad2(DirectionVaus dirV);
   void moveBall();
   void shotShore();
-  bool checkImpactVaus(int x, int y);
+  bool checkImpactPad1(int x, int y);
+  bool checkImpactPad2(int x, int y);
   void modBallDirImpact(int x, int y);
-  /*
-  void resizeVaus(int amount);
-  void growVaus(int amount);
-  */
+  void modBallDirImpact2(int x, int y);
+  bool checkImpactWall(int x, int y);
+
   void displayVaus();
 
 };
