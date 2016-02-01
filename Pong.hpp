@@ -8,10 +8,9 @@
 #ifndef PONG_HPP_
 #define PONG_HPP_
 
-/* Starting Coord y for the Pads */
+/* Starting position for the Vaus */
 #define Pad_yL 11
 #define Pad_yR 17
-
 #define Pad1X 1
 #define Pad2X 30
 
@@ -19,6 +18,10 @@
 #define RMATRIX 32
 #define CMATRIX 32
 
+/* Rows&Columns for the Wall */
+#define RWALL 4
+#define CWALL 20
+#define OFFSET 5
 
 
 #define NOTEST

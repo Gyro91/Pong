@@ -1,5 +1,5 @@
 #include "Pong.hpp"
-
+#include <string.h>
 // Colours
 #define BLUE 0, 0, 7
 #define BLACK 0, 0, 0
@@ -21,17 +21,185 @@
 #define BLEFT2 A4
 #define BRIGHT2 A5
 
-
+#define FINALSCORE 5
 MapGame mg;
 RGBmatrixPanel matrix(A, B, C, D, CLK, LAT, OE, false);
 
 unsigned char START = 0;
+unsigned char points_p1 = 0;
+unsigned char points_p2 = 0;
+unsigned char oldpoints_p1 = 0;
+unsigned char oldpoints_p2 = 0;
 
-int point1, point2;
+void showPoints() 
+{
+  matrix.setCursor(5, 0); 
+  matrix.setTextSize(1);    
+  matrix.setTextColor(matrix.Color333(GREEN));
+  switch(points_p1) {
+    case 0:
+      matrix.print('0');
+        break;
+    case 1:
+      
+      if (oldpoints_p1 != points_p1) {
+          matrix.setCursor(5, 0); 
+          matrix.setTextColor(matrix.Color333(BLACK));
+          matrix.print('0');
+          oldpoints_p1 = points_p1; 
+      }
+      matrix.setTextColor(matrix.Color333(GREEN));
+      matrix.setCursor(5, 0); 
+      matrix.print('1');
+        break;
+    case 2:
+    
+    if (oldpoints_p1 != points_p1) {
+          matrix.setCursor(5, 0); 
+          matrix.setTextColor(matrix.Color333(BLACK));
+          matrix.print('1'); 
+          oldpoints_p1 = points_p1;
+      }
+      matrix.setCursor(5, 0); 
+      matrix.setTextColor(matrix.Color333(GREEN));
+      matrix.print('2');
+        break;
+    case 3:
+   
+      if (oldpoints_p1 != points_p1) {
+          matrix.setCursor(5, 0); 
+          matrix.setTextColor(matrix.Color333(BLACK));
+          matrix.print('2');
+          oldpoints_p1 = points_p1; 
+      }
+      matrix.setCursor(5, 0); 
+      matrix.setTextColor(matrix.Color333(GREEN));
+      matrix.print('3');
+        break;
+     case 4:
+     
+    if (oldpoints_p1 != points_p1) {
+          matrix.setCursor(5, 0); 
+          matrix.setTextColor(matrix.Color333(BLACK));
+          matrix.print('3'); 
+          oldpoints_p1 = points_p1;
+      }
+      matrix.setCursor(5, 0); 
+      matrix.setTextColor(matrix.Color333(GREEN));
+      matrix.print('4');
+     break;
+
+    case 5:  
+    if (oldpoints_p1 != points_p1) {
+          matrix.setCursor(5, 0); 
+          matrix.setTextColor(matrix.Color333(BLACK));
+          matrix.print('4'); 
+          oldpoints_p1 = points_p1;
+      }
+      matrix.setCursor(5, 0); 
+      matrix.setTextColor(matrix.Color333(GREEN));
+        matrix.print('5');
+         break;
+  }
+
+  matrix.setCursor(20, 0); 
+
+  switch(points_p2) {
+    case 0:
+      matrix.print('0');
+        break;
+    case 1:
+      if (oldpoints_p2 != points_p2) {
+          matrix.setCursor(20, 0); 
+          matrix.setTextColor(matrix.Color333(BLACK));
+          matrix.print('0');
+          oldpoints_p2 = points_p2; 
+      }
+      matrix.setTextColor(matrix.Color333(GREEN));
+      matrix.setCursor(20, 0); 
+      matrix.print('1');
+        break;
+    case 2:
+    
+    if (oldpoints_p2 != points_p2) {
+          matrix.setCursor(20, 0); 
+          matrix.setTextColor(matrix.Color333(BLACK));
+          matrix.print('1'); 
+          oldpoints_p2 = points_p2;
+      }
+      matrix.setCursor(20, 0); 
+      matrix.setTextColor(matrix.Color333(GREEN));
+      matrix.print('2');
+        break;
+    case 3:
+   
+      if (oldpoints_p2 != points_p2) {
+          matrix.setCursor(20, 0); 
+          matrix.setTextColor(matrix.Color333(BLACK));
+          matrix.print('2');
+          oldpoints_p2 = points_p2; 
+      }
+      matrix.setCursor(20, 0); 
+      matrix.setTextColor(matrix.Color333(GREEN));
+      matrix.print('3');
+        break;
+     case 4:
+     
+    if (oldpoints_p2 != points_p2) {
+          matrix.setCursor(20, 0);
+          matrix.setTextColor(matrix.Color333(BLACK));
+          matrix.print('3'); 
+          oldpoints_p2 = points_p2;
+      }
+      matrix.setCursor(20, 0); 
+      matrix.setTextColor(matrix.Color333(GREEN));
+      matrix.print('4');
+     break;
+
+    case 5:  
+    if (oldpoints_p2 != points_p2) {
+          matrix.setCursor(20, 0); 
+          matrix.setTextColor(matrix.Color333(BLACK));
+          matrix.print('4'); 
+          oldpoints_p2 = points_p2;
+      }
+      matrix.setCursor(20, 0); 
+      matrix.setTextColor(matrix.Color333(GREEN));
+        matrix.print('5');
+         break;
+  }
+
+}
+
+void endGame()
+{    
+     showPoints();
+     matrix.setCursor(10, 9);  
+     matrix.setTextSize(1);    
+    if (points_p1 == FINALSCORE) {
+       matrix.print('P');
+       matrix.print('1');
+       matrix.setCursor(5, 18);   
+       matrix.print('W');
+       matrix.print('I');
+       matrix.print('N');
+       matrix.print('S');
+     }
+     else if(points_p2 == FINALSCORE) {
+       matrix.print('P');
+       matrix.print('2');
+       matrix.setCursor(5, 18);   
+       matrix.print('W');
+       matrix.print('I');
+       matrix.print('N');
+       matrix.print('S');
+     }
+   while(1);
+}
+
 
 class GraphicHandler {
-  int ledstate1, ledstate2, ledstate3, ledstate4, ledstate5;
-  unsigned long previousMillis = 0;
+  unsigned long previousMillis1 = 0;
   unsigned long previousMillis2 = 0;
 
 public:
@@ -53,41 +221,47 @@ public:
           mg.pad2.lastR, matrix.Color333(BLACK));
   }
   void buttonsAction()
-  {
-    if (ledstate1 == HIGH) {
+  { 
+    int ledstate0, ledstate1, ledstate2, ledstate3, ledstate4;
+    
+    ledstate0 = digitalRead(BLEFT1);
+    ledstate1 = digitalRead(BRIGHT1);
+    ledstate2 = digitalRead(BRIGHT2); 
+    ledstate3 = digitalRead(BLEFT2);
+    ledstate4 = digitalRead(BFIRE);
+    
+    if (ledstate0 == HIGH) {
         deletePad1();
         mg.movePad1(LEFT);
         drawPad1();
-        ledstate1 = false;
-    }
-    if (ledstate2 == HIGH) {
+
+    }   
+    if (ledstate1 == HIGH) {
         deletePad1();
         mg.movePad1(RIGHT);
         drawPad1();
-        ledstate2 = false;
     }
-
-    if (ledstate4 == LOW) {
+    
+    if (ledstate3 == LOW) {
         deletePad2();
         mg.movePad2(LEFT);
         drawPad2();
-        ledstate1 = false;
+     
     }
-    if (ledstate5 == LOW) { //A5
+    
+    if (ledstate2 == LOW) { 
         deletePad2();
         mg.movePad2(RIGHT);
         drawPad2();
-        ledstate2 = false;
     }
-
-    if (ledstate3 == HIGH) {
+    
+    if (ledstate4 == HIGH && START == 0) {
         START = 1;
         matrix.drawPixel(mg.ball.x, mg.ball.y, 
             matrix.Color333(BLACK));
         mg.moveBall();
         matrix.drawPixel(mg.ball.x, mg.ball.y, 
-            matrix.Color333(RED));
-        delay(50);
+            matrix.Color333(BLUE));
     }
   }
   
@@ -95,23 +269,41 @@ public:
   { 
     unsigned long currentMillis;
     currentMillis = millis();
-    if ((currentMillis - previousMillis) >= 50) {
-        previousMillis = currentMillis;
-        ledstate1 = digitalRead(BLEFT1);
-        ledstate2 = digitalRead(BRIGHT1);
-        ledstate3 = digitalRead(BFIRE);
-        ledstate4 = digitalRead(BLEFT2);
-        ledstate5 = digitalRead(BRIGHT2); 
+    if ((currentMillis - previousMillis1) >= 50) {
+        previousMillis1 = currentMillis;
         buttonsAction();
     }   
-    else if (START == 1 && (currentMillis - previousMillis2) >= 40) {
+    if (START == 1 && (currentMillis - previousMillis2) >= 35) {
         previousMillis2 = currentMillis;
         matrix.drawPixel(mg.ball.x, mg.ball.y, 
             matrix.Color333(BLACK));
+        
+        if (mg.ball.x == 1 && mg.ball.y >= mg.pad1.lastL 
+            && mg.ball.y <= mg.pad1.lastR)
+            drawPad1();
+        else if(mg.ball.x == 30 && mg.ball.y >= mg.pad1.lastL 
+            && mg.ball.y <= mg.pad1.lastR)
+            drawPad2();
+        
         mg.moveBall();
         matrix.drawPixel(mg.ball.x, mg.ball.y, 
             matrix.Color333(RED));
-       }
+     
+     // Eventually increasing 
+     if (mg.ball.x == 0) 
+        points_p2++;
+      else if(mg.ball.x == 31)
+        points_p1++;
+
+      if( points_p1 == FINALSCORE || points_p2 == FINALSCORE)
+         endGame();
+
+     showPoints();
+     
+    }
+
+   
+   
   }
 };
 
@@ -120,12 +312,23 @@ void setup()
 { 
  
   matrix.begin();
+  
   pinMode(BFIRE, INPUT);
   pinMode(BLEFT1, INPUT);
   pinMode(BRIGHT1, INPUT);
   pinMode(BLEFT2, INPUT);
   pinMode(BRIGHT2, INPUT);
-
+/*
+       matrix.print('P');
+       matrix.print('O');
+       matrix.print('N');
+       matrix.print('G');
+       matrix.setCursor(5, 9);   // start at top left, with one pixel of spacing
+       matrix.print('G');
+       matrix.print('A');
+       matrix.print('M');
+       matrix.print('E');
+  */
   // Draw Paddle1
   matrix.drawLine(mg.pad1.x, mg.pad1.lastL, mg.pad1.x, 
       mg.pad1.lastR,matrix.Color333(BLUE));
@@ -142,11 +345,10 @@ void setup()
 
 GraphicHandler gh;
 
-
 void loop() 
 {
-  
-  gh.update();
-  
+
+    gh.update();
+    
  
 }

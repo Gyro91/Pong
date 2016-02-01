@@ -8,8 +8,6 @@ Pad::Pad(int coordx)
 	x = coordx;
 }
 
-
-
 /* Constructor for the Ball */
 
 Ball::Ball()
