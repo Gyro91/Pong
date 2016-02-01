@@ -8,19 +8,17 @@
 #ifndef PONG_HPP_
 #define PONG_HPP_
 
-/* Starting position for the Vaus */
-#define Vaus_yl 11
-#define Vaus_yr 17
-#define LineVaus 1
+/* Starting Coord y for the Pads */
+#define Pad_yL 11
+#define Pad_yR 17
+
+#define Pad1X 1
+#define Pad2X 30
 
 /* Rows&Columns for the Matrix */
 #define RMATRIX 32
 #define CMATRIX 32
 
-/* Rows&Columns for the Wall */
-#define RWALL 4
-#define CWALL 20
-#define OFFSET 5
 
 
 #define NOTEST
@@ -49,7 +47,7 @@
 #endif
 
 
-typedef enum DirectionVaus{LEFT, RIGHT} DirectionVaus;
+typedef enum DirectionPad{LEFT, RIGHT} DirectionPad;
 typedef enum DirectionBall{NL, N, NR, SL, S, SR} DirectionBall;
 
 class Brick {
@@ -57,18 +55,15 @@ public:
 	int x1, y1, x2, y2;
 };
 
-class Pad1 {
-public:
-  unsigned char lastL, lastR; // y coordinates
-  unsigned char x;  // coordinate x
-  Pad1();
-};
 
-class Pad2 {
+
+
+class Pad {
 public:
   unsigned char lastL, lastR; // y coordinates
   unsigned char x;  // coordinate x
-  Pad2();
+  void movePad(DirectionPad);
+  Pad(int coordx);
 };
 
 class Ball {
@@ -86,14 +81,14 @@ public:
 #endif
 
 public:
-  Pad1 pad1;
-  Pad2 pad2;
+  Pad pad1 = Pad(1);
+  Pad pad2 = Pad(30);
   Ball ball;
 
   void checkDirBall();
   void invertDirBall();
-  void movePad1(DirectionVaus dirV);
-  void movePad2(DirectionVaus dirV);
+  void movePad1(DirectionPad dirV);
+  void movePad2(DirectionPad dirV);
   void moveBall();
   void shotShore();
   bool checkImpactPad1(int x, int y);

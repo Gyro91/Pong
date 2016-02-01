@@ -1,5 +1,5 @@
 CC=g++
-CFLAGS=-Wall
+CFLAGS=-Wall -std=c++11
 LDFLAGS=-lcppunit
 SOURCES=TestPong.cpp ../Pong.cpp MockMatrix.cpp
 OBJECTS=$(SOURCES:.cpp=.o)

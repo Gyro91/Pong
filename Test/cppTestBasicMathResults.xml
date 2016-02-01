@@ -3,14 +3,17 @@
   <FailedTests></FailedTests>
   <SuccessfulTests>
     <Test id="1">
-      <Name>TestArkanoid::testmoveVausLeft</Name>
+      <Name>TestPong::testmovePad1Left</Name>
     </Test>
     <Test id="2">
-      <Name>TestArkanoid::testmoveVausRight</Name>
+      <Name>TestPong::testmovePad1Right</Name>
+    </Test>
+    <Test id="3">
+      <Name>TestPong::testmovePad1Right</Name>
     </Test>
   </SuccessfulTests>
   <Statistics>
-    <Tests>2</Tests>
+    <Tests>3</Tests>
     <FailuresTotal>0</FailuresTotal>
     <Errors>0</Errors>
     <Failures>0</Failures>

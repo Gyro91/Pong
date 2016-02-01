@@ -21,11 +21,11 @@ using namespace std;
 
 //-----------------------------------------------------------------------------
 
-class TestArkanoid : public CppUnit::TestFixture
+class TestPong : public CppUnit::TestFixture
 {
-    CPPUNIT_TEST_SUITE(TestArkanoid);
-    CPPUNIT_TEST(testmoveVausLeft);
-    CPPUNIT_TEST(testmoveVausRight);
+    CPPUNIT_TEST_SUITE(TestPong);
+    CPPUNIT_TEST(testmovePad1Left);
+    CPPUNIT_TEST(testmovePad1Right);
     CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -33,8 +33,8 @@ public:
     void tearDown(void);
 
 protected:
-    void testmoveVausLeft(void);
-    void testmoveVausRight(void);
+    void testmovePad1Left(void);
+    void testmovePad1Right(void);
     void testMultiply(void);
 
 private:
@@ -46,17 +46,17 @@ private:
 
 
 /* TestmoveVausRight and TestmoveVausLeft
- * check if the line of the mocking matrix is false where it is not the Vaus
- * and true where the Vaus it is
+ * check if the line of the mocking matrix is false where it is not the Pad1
+ * and true where the Pad1 it is
  *
  * */
 void
-TestArkanoid::testmoveVausRight(void)
+TestPong::testmovePad1Right(void)
 {
-	int startL = mp->vaus.lastL, startR = mp->vaus.lastR;
+	int startL = mp->pad1.lastL, startR = mp->pad1.lastR;
 	bool result_test = true;
 
-	mp->moveVaus(RIGHT);
+	mp->movePad1(RIGHT);
 
 	for (int i =  0; i < startL; i++)
 			if (mp->matrix.matrix[1][i].state)
@@ -75,12 +75,12 @@ TestArkanoid::testmoveVausRight(void)
 
 
 void
-TestArkanoid::testmoveVausLeft(void)
+TestPong::testmovePad1Left(void)
 {
-	int startL = mp->vaus.lastL, startR = mp->vaus.lastR;
+	int startL = mp->pad1.lastL, startR = mp->pad1.lastR;
 	bool result_test = true;
 
-	mp->moveVaus(RIGHT);
+	mp->movePad1(RIGHT);
 
 	for (int i =  0; i < startL; i++)
 			if (mp->matrix.matrix[1][i].state)
@@ -97,19 +97,19 @@ TestArkanoid::testmoveVausLeft(void)
     CPPUNIT_ASSERT(result_test);
 }
 
-void TestArkanoid::setUp(void)
+void TestPong::setUp(void)
 {
     mp = new MapGame();
 }
 
-void TestArkanoid::tearDown(void)
+void TestPong::tearDown(void)
 {
     delete mp;
 }
 
 //-----------------------------------------------------------------------------
 
-CPPUNIT_TEST_SUITE_REGISTRATION( TestArkanoid );
+CPPUNIT_TEST_SUITE_REGISTRATION( TestPong );
 
 int main(int argc, char* argv[])
 {

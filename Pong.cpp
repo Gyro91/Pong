@@ -1,30 +1,21 @@
 #include "Pong.hpp"
 
-unsigned char casual = 0;
 
-
-Pad2::Pad2()
+Pad::Pad(int coordx)
 {
-	lastL = Vaus_yl;
-	lastR = Vaus_yr;
-	x = 30;
+	lastL = Pad_yL;
+	lastR = Pad_yR;
+	x = coordx;
 }
 
 
-
-Pad1::Pad1()
-{
-	lastL = Vaus_yl;
-	lastR = Vaus_yr;
-	x = LineVaus;
-}
 
 /* Constructor for the Ball */
 
 Ball::Ball()
 {
-	x = LineVaus + 1;
-	y = (Vaus_yl + Vaus_yr) / 2;
+	x = Pad1X + 1;
+	y = (Pad_yL + Pad_yR) / 2;
 	dirB = N;
 }
 
@@ -32,8 +23,8 @@ Ball::Ball()
 void MapGame::displayVaus()
 {
 	#ifdef TEST
-	matrix.drawLine(vaus.x, vaus.lastL,
-			vaus.x, vaus.lastR, BLUE);
+	matrix.drawLine(pad1.x, pad1.lastL,
+			pad1.x, pad1.lastR, BLUE);
 	#endif
 }
 
@@ -88,6 +79,8 @@ bool result = false;
 			result = true;
 			modBallDirImpact(x,y);		}
 		break;
+	default:
+		break;
 	}
 	return result;
 }
@@ -116,6 +109,8 @@ bool result = false;
 				&& (y + 1) >= pad2.lastL) {
 			result = true;
 			modBallDirImpact2(x,y);		}
+		break;
+	default:
 		break;
 	}
 	return result;
@@ -167,6 +162,8 @@ void MapGame::checkDirBall()
 							invertDirBall();
 
 			break;
+		default:
+			break;
 	}
 }
 
@@ -199,6 +196,8 @@ void MapGame::moveBall()
 			ball.x--;
 			ball.y++;
 			break;
+		default:
+			break;
 	}
 }
 
@@ -225,6 +224,8 @@ void MapGame::shotShore()
 		case SL:
 			ball.dirB = SR;
 			break;
+		default:
+			break;
 
 	}
 }
@@ -236,15 +237,6 @@ void MapGame::invertDirBall()
 	switch(ball.dirB) {
 		case N:
 			ball.dirB = S;
-			/*
-			if (casual == 0) {
-				ball.dirB = SR;
-				casual = 1;
-			}
-			else {
-				casual = 0;
-				ball.dirB = SL;
-			}*/
 			break;
 		case NR:
 			ball.dirB = SR;
@@ -261,53 +253,52 @@ void MapGame::invertDirBall()
 		case SR:
 			ball.dirB = NL;
 			break;
+		default:
+			break;
 	}
 }
 
 
 /* Moves the Paddle in the passed direction */
 
-void MapGame::movePad1(DirectionVaus dir)
+void MapGame::movePad1(DirectionPad dir)
 {
 	#ifdef TEST
-	matrix.drawLine(vaus.x, vaus.lastL,
-			vaus.x, vaus.lastR, BLACK);
+	matrix.drawLine(pad1.x, pad1.lastL,
+			pad1.x, pad1.lastR, BLACK);
 	#endif
 
-  if (dir == LEFT && pad1.lastL > 0) {
-	  pad1.lastL--;
-	  pad1.lastR--;
-  }
-  else if (dir == RIGHT && pad1.lastR < 31) {
-	  pad1.lastL++;
-	  pad1.lastR++;
-  }
+	pad1.movePad(dir);
 
-  #ifdef TEST
-  displayVaus();
-  #endif
+	#ifdef TEST
+    displayVaus();
+  	#endif
 }
 
+void Pad::movePad(DirectionPad dir)
+{
+	if (dir == LEFT && lastL > 0) {
+		lastL--;
+		lastR--;
+	 }
+	else if (dir == RIGHT && lastR < 31) {
+		lastL++;
+		lastR++;
+	 }
+}
 
 /* Moves the Paddle in the passed direction */
 
-void MapGame::movePad2(DirectionVaus dir)
+void MapGame::movePad2(DirectionPad dir)
 {
 	#ifdef TEST
-	matrix.drawLine(vaus2.x, vaus2.lastL,
-			vaus2.x, vaus2.lastR, BLACK);
+	matrix.drawLine(pad2.x, pad2.lastL,
+			pad2.x, pad2.lastR, BLACK);
 	#endif
 
-  if (dir == LEFT && pad2.lastL > 0) {
-	  pad2.lastL--;
-	  pad2.lastR--;
-  }
-  else if (dir == RIGHT && pad2.lastR < 31) {
-	  pad2.lastL++;
-	  pad2.lastR++;
-  }
+	pad2.movePad(dir);
 
-  #ifdef TEST
-  displayVaus();
-  #endif
+	#ifdef TEST
+	displayVaus();
+  	#endif
 }
