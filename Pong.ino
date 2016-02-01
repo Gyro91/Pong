@@ -6,6 +6,8 @@
 #define RED 7, 0, 0
 #define GREEN 0, 7, 0
 
+#define WHITE 255, 255, 255
+
 // Constants for the matrix
 #define CLK 8  
 #define OE  9
@@ -28,8 +30,40 @@ RGBmatrixPanel matrix(A, B, C, D, CLK, LAT, OE, false);
 unsigned char START = 0;
 unsigned char points_p1 = 0;
 unsigned char points_p2 = 0;
-unsigned char oldpoints_p1 = 0;
+unsigned char oldpoints_p1 = 0; 
 unsigned char oldpoints_p2 = 0;
+
+
+/* This function prints on screen the introduction of 
+ * the game
+ */
+void intro() {
+
+    matrix.setCursor(5, 9); 
+    matrix.setTextSize(1);    
+    matrix.setTextColor(matrix.Color333(WHITE));
+    matrix.print('P');
+    matrix.print('O');
+    matrix.print('N');
+    matrix.print('G');
+    matrix.setCursor(5, 18);   // start at top left, with one pixel of spacing
+    matrix.print('G');
+    matrix.print('A');
+    matrix.print('M');
+    matrix.print('E');
+    
+    delay(3000);
+
+    for (int i=0; i<RMATRIX; i++)
+        for(int j=0; j<CMATRIX; j++)
+            matrix.drawPixel(i, j, matrix.Color333(BLACK));
+}
+
+
+/* This function prints on screen the points of the players. 
+ * It erases the points screen only when it's needed inorder 
+ * to avoid blinking.
+ */
 
 void showPoints() 
 {
@@ -41,7 +75,6 @@ void showPoints()
       matrix.print('0');
         break;
     case 1:
-      
       if (oldpoints_p1 != points_p1) {
           matrix.setCursor(5, 0); 
           matrix.setTextColor(matrix.Color333(BLACK));
@@ -171,11 +204,17 @@ void showPoints()
 
 }
 
+
+/* This function ends the game. It shows points and the screen of the winner. 
+ * Then it blocks forever.
+ *
+ */
 void endGame()
 {    
      showPoints();
      matrix.setCursor(10, 9);  
      matrix.setTextSize(1);    
+     matrix.setTextColor(matrix.Color333(WHITE));
     if (points_p1 == FINALSCORE) {
        matrix.print('P');
        matrix.print('1');
@@ -197,7 +236,15 @@ void endGame()
    while(1);
 }
 
-
+/* It's the manager of the screen. It does not use the delay in
+ * order to make the system more responsive. Like a timeline scheduling
+ * every 50 ms it does a polling on the buttons and eventually executes
+ * the selected action.
+ * And every 35 ms it updates the movement of the ball.
+ * 
+ * 
+ */
+ 
 class GraphicHandler {
   unsigned long previousMillis1 = 0;
   unsigned long previousMillis2 = 0;
@@ -303,7 +350,6 @@ public:
     }
 
    
-   
   }
 };
 
@@ -318,17 +364,8 @@ void setup()
   pinMode(BRIGHT1, INPUT);
   pinMode(BLEFT2, INPUT);
   pinMode(BRIGHT2, INPUT);
-/*
-       matrix.print('P');
-       matrix.print('O');
-       matrix.print('N');
-       matrix.print('G');
-       matrix.setCursor(5, 9);   // start at top left, with one pixel of spacing
-       matrix.print('G');
-       matrix.print('A');
-       matrix.print('M');
-       matrix.print('E');
-  */
+
+  intro();
   // Draw Paddle1
   matrix.drawLine(mg.pad1.x, mg.pad1.lastL, mg.pad1.x, 
       mg.pad1.lastR,matrix.Color333(BLUE));
@@ -347,8 +384,6 @@ GraphicHandler gh;
 
 void loop() 
 {
-
     gh.update();
-    
  
 }
