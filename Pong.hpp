@@ -1,12 +1,12 @@
 /*
- * Arkanoid.hpp
+ * Pong.hpp
  *
  *  Created on: Jan 28, 2016
  *      Author: Matteo Rotundo
  */
 
-#ifndef ARKANOID_HPP_
-#define ARKANOID_HPP_
+#ifndef PONG_HPP_
+#define PONG_HPP_
 
 /* Starting position for the Vaus */
 #define Vaus_yl 11
@@ -105,7 +105,7 @@ public:
   void displayVaus();
 
 };
-#endif /* ARKANOID_HPP_ */
+#endif /* PONG_HPP_ */
 
 
 

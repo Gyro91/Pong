@@ -14,7 +14,7 @@
 #include <cppunit/XmlOutputter.h>
 #include <netinet/in.h>
 
-#include "../Arkanoid.hpp"
+#include "../Pong.hpp"
 
 using namespace CppUnit;
 using namespace std;

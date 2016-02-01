@@ -76,3 +76,4 @@ local.properties
 .deps/*
 
 *~
+/Debug/

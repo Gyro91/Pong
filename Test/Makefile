@@ -1,9 +1,9 @@
 CC=g++
 CFLAGS=-Wall
 LDFLAGS=-lcppunit
-SOURCES=TestArkanoid.cpp ../Arkanoid.cpp MockMatrix.cpp
+SOURCES=TestPong.cpp ../Pong.cpp MockMatrix.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
-EXECUTABLE=Test
+EXECUTABLE=TestPong
 
 all:
 	$(CC) $(CFLAGS) $(SOURCES) $(LDFLAGS) -o $(EXECUTABLE) 

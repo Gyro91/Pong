@@ -1,4 +1,4 @@
-#include "Arkanoid.hpp"
+#include "Pong.hpp"
 
 // Colours
 #define BLUE 0, 0, 7
@@ -20,12 +20,14 @@
 #define BRIGHT1 13
 #define BLEFT2 A4
 #define BRIGHT2 A5
+
+
 MapGame mg;
 RGBmatrixPanel matrix(A, B, C, D, CLK, LAT, OE, false);
 
 unsigned char START = 0;
 
-
+int point1, point2;
 
 class GraphicHandler {
   int ledstate1, ledstate2, ledstate3, ledstate4, ledstate5;
@@ -139,6 +141,8 @@ void setup()
 }
 
 GraphicHandler gh;
+
+
 void loop() 
 {
   

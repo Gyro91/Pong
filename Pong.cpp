@@ -1,4 +1,4 @@
-#include "Arkanoid.hpp"
+#include "Pong.hpp"
 
 unsigned char casual = 0;
 
