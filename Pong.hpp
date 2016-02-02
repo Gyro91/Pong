@@ -23,6 +23,9 @@
 
 #define NOTEST
 
+extern unsigned char t_ball;
+extern unsigned char t_pad1;
+extern unsigned char t_pad2;
 
 // Constants and library for TESTING
 

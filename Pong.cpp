@@ -1,5 +1,12 @@
 #include "Pong.hpp"
 
+#define ALFA 0.900
+unsigned char t_ball = 35;
+unsigned char t_pad1 = 60;
+unsigned char t_pad2 = 60;
+
+
+/* Constructor for the Pad */
 
 Pad::Pad(int coordx)
 {
@@ -18,6 +25,7 @@ Ball::Ball()
 }
 
 /* Useful only for Testing Mode */
+
 void MapGame::displayVaus()
 {
 	#ifdef TEST
@@ -62,6 +70,10 @@ bool result = false;
 				&& y>= pad1.lastL) {
 			result = true;
 			modBallDirImpact(x,y);
+      // vball is proportional to the v of the pad
+      t_ball = (unsigned char)((float)(t_pad1) * ALFA);
+      if (t_ball > 35)
+          t_ball = 35;
 		}
 		break;
 	case SL:
@@ -69,13 +81,20 @@ bool result = false;
 				&& (y - 1) >= pad1.lastL) {
 			result = true;
 			modBallDirImpact(x,y);
+      t_ball = (unsigned char)((float)(t_pad1) * ALFA);
+      if (t_ball > 35)
+          t_ball = 35;
 		}
 		break;
 	case SR:
 		if ((x - 1) == pad1.x && (y + 1) <= pad1.lastR
 				&& (y + 1) >= pad1.lastL) {
 			result = true;
-			modBallDirImpact(x,y);		}
+			modBallDirImpact(x,y);
+      t_ball = (unsigned char)((float)(t_pad1) * ALFA);
+      if (t_ball > 35)
+          t_ball = 35;
+			}
 		break;
 	default:
 		break;
@@ -93,6 +112,10 @@ bool result = false;
 				&& y>= pad2.lastL) {
 			result = true;
 			modBallDirImpact2(x,y);
+
+      t_ball = (unsigned char)((float)(t_pad2) * ALFA);
+      if (t_ball > 35)
+          t_ball = 35;
 		}
 		break;
 	case NL:
@@ -100,13 +123,22 @@ bool result = false;
 				&& (y - 1) >= pad2.lastL) {
 			result = true;
 			modBallDirImpact2(x,y);
+
+      t_ball = (unsigned char)((float)(t_pad2) * ALFA);
+      if (t_ball > 35)
+          t_ball = 35;
 		}
 		break;
 	case NR:
 		if ((x + 1) == pad2.x && (y + 1) <= pad2.lastR
 				&& (y + 1) >= pad2.lastL) {
 			result = true;
-			modBallDirImpact2(x,y);		}
+			modBallDirImpact2(x,y);		
+		
+      t_ball = (unsigned char)((float)(t_pad2) * ALFA);
+      if (t_ball > 35)
+          t_ball = 35;
+			}
 		break;
 	default:
 		break;

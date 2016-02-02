@@ -1,11 +1,10 @@
 #include "Pong.hpp"
-#include <string.h>
+
 // Colours
 #define BLUE 0, 0, 7
 #define BLACK 0, 0, 0
 #define RED 7, 0, 0
 #define GREEN 0, 7, 0
-
 #define WHITE 255, 255, 255
 
 // Constants for the matrix
@@ -22,19 +21,27 @@
 #define BLEFT2 A4
 #define BRIGHT2 A5
 
+// Points for winning the match
 #define FINALSCORE 5
+// Acceleratio for the paddle after a button press
+#define ACCEL 5
+// Maximum period of a paddle
+#define TPAD_MAX 60
+// Minimum period of a paddle
+#define TPAD_MIN 30
+
+// Map of the Game
 MapGame mg;
+// RGB Matrix
 RGBmatrixPanel matrix(A, B, C, D, CLK, LAT, OE, false);
 
-unsigned char count1 = 0;
-unsigned char count2 = 0;
+// Actual and old Points of every player
 unsigned char points_p1 = 0;
 unsigned char points_p2 = 0;
 unsigned char oldpoints_p1 = 0; 
 unsigned char oldpoints_p2 = 0;
-unsigned char v_pad1 = 60;
-unsigned char v_pad2 = 60;
 
+// Last direction of each pad
 DirectionPad last_action1;
 DirectionPad last_action2;
 
@@ -269,88 +276,108 @@ public:
       matrix.drawLine(mg.pad2.x, mg.pad2.lastL, mg.pad2.x, 
           mg.pad2.lastR, matrix.Color333(BLACK));
   }
-  void buttonsActionP1(int *ledstate0, int *ledstate1)
-  { 
-   
-    if (*ledstate0 == HIGH) {
+  void buttonsActionP1()
+  {  
+    int ledstate0 = digitalRead(BLEFT1);
+    int ledstate1 = digitalRead(BRIGHT1);
+    
+    if (ledstate0 == HIGH) {
         deletePad1();
         mg.movePad1(LEFT);
         drawPad1();
-        if (last_action1 == LEFT ) {
-           if (v_pad1 > 30)
-           v_pad1 -= 5;
+        // If the Direction is the same of the last
+        // then acceleration
+        if (last_action1 == LEFT) {
+           if (t_pad1 > TPAD_MIN)
+           t_pad1 -= ACCEL;
         }
-        else v_pad1 = 60;
+        else t_pad1 = TPAD_MAX;
         last_action1 = LEFT;
     }   
-    if (*ledstate1 == HIGH) {
+    if (ledstate1 == HIGH) {
         deletePad1();
         mg.movePad1(RIGHT);
         drawPad1();
         if (last_action1 == RIGHT) {
-          if (v_pad1 > 30)
-            v_pad1 -= 5;
+          if (t_pad1 > TPAD_MIN)
+            t_pad1 -= ACCEL;
         }    
-        else v_pad1 = 60;
+        else t_pad1 = TPAD_MAX;
         last_action1 = RIGHT;
     }
+    // If there's no button press, then deceleration 
+     if (ledstate0 == LOW && ledstate1 == LOW)
+            if(t_pad1 < TPAD_MAX)
+              t_pad1 = TPAD_MAX;
     
-
+      
   }
 
-  void buttonsActionP2(int *ledstate2, int *ledstate3) 
+  void buttonsActionP2() 
   {
-     
-    if (*ledstate3 == LOW) {
+    // BLEFT2 and BRIGHT2 are low sensitive
+    int ledstate3 = digitalRead(BLEFT2);
+    int ledstate2 = digitalRead(BRIGHT2);
+  
+    if (ledstate3 == LOW) {
         deletePad2();
         mg.movePad2(LEFT);
         drawPad2();
+        // If there's no change of direction
+        // then acceleration
+        if (last_action2 == LEFT ) {
+           if (t_pad2 > TPAD_MIN)
+           t_pad2 -= ACCEL;
+        }
+        else t_pad2 = TPAD_MAX;
+        last_action2 = LEFT;
      
     }
     
-    if (*ledstate2 == LOW) { 
+    if (ledstate2 == LOW) { 
         deletePad2();
         mg.movePad2(RIGHT);
         drawPad2();
-    }  
+         if (last_action2 == RIGHT) {
+          if (t_pad2 > TPAD_MIN)
+            t_pad2 -= ACCEL;
+        }    
+        else t_pad2 = TPAD_MAX;
+        last_action2 = RIGHT;
+    }
+    // If there's no button press, then deceleration 
+      if (ledstate2 == LOW && ledstate3 == LOW)
+            if(t_pad2 < TPAD_MAX)
+              t_pad2 = TPAD_MAX;
+      
   }
   
   void update()
   { 
-    unsigned long currentMillis;
-    int ledstate0, ledstate1,ledstate2, ledstate3;
+    unsigned long currentMillis;   
     unsigned long previousMillis1 = 0;
     unsigned long previousMillis2 = 0;
     unsigned long previousMillis3 = 0;
-    unsigned long previousMillis4 = 0;
-    unsigned int count0, count2;
+
+
     while(1) {
   
-      currentMillis = millis();
+    currentMillis = millis();
 
-      if ((currentMillis - previousMillis1) >= 50) {
+    // Every t_pad1 handling PAD1
+    if ((currentMillis - previousMillis1) >= t_pad1) {
          previousMillis1 = currentMillis;
-         ledstate0 = digitalRead(BLEFT1);
-         ledstate1 = digitalRead(BRIGHT1);
-         ledstate2 = digitalRead(BLEFT1);
-         ledstate3 = digitalRead(BRIGHT1);
+         buttonsActionP1();
+
     }
-    if ((currentMillis - previousMillis2) >= v_pad1) {
-         previousMillis2 = currentMillis;
-         buttonsActionP1(&ledstate0, &ledstate1);
-         ledstate0 = LOW;
-         ledstate1 = LOW;
+    // Every t_pad2 handling PAD2
+    if ((currentMillis - previousMillis2) >= t_pad2) {     
+         previousMillis2 = currentMillis; 
+         buttonsActionP2();
     }
-    if ((currentMillis - previousMillis3) >= v_pad2) {     
-         previousMillis3 = currentMillis;
-         ledstate2 = digitalRead(BRIGHT2); 
-         ledstate3 = digitalRead(BLEFT2); 
-         buttonsActionP2(&ledstate2, &ledstate3);
-         ledstate2 = LOW;
-         ledstate3 = LOW;
-    }
-    if ((currentMillis - previousMillis4) >= 40) {
-        previousMillis4 = currentMillis;
+    // Every t_ball moving the ball
+    if ((currentMillis - previousMillis3) >= t_ball) {
+        previousMillis3 = currentMillis;
         matrix.drawPixel(mg.ball.x, mg.ball.y, 
             matrix.Color333(BLACK));
         
@@ -384,28 +411,37 @@ public:
 
 
 void setup()
-{ 
- 
-  matrix.begin();
+{   
+  // For A Random Start 
+    randomSeed(analogRead(0));
+    int randn = random(10);
+    
+    matrix.begin();
   
-  pinMode(BLEFT1, INPUT);
-  pinMode(BRIGHT1, INPUT);
-  pinMode(BLEFT2, INPUT);
-  pinMode(BRIGHT2, INPUT);
+    pinMode(BLEFT1, INPUT);
+    pinMode(BRIGHT1, INPUT);
+    pinMode(BLEFT2, INPUT);
+    pinMode(BRIGHT2, INPUT);
+  
+    //intro();
+    // Draw Paddle1
+    matrix.drawLine(mg.pad1.x, mg.pad1.lastL, mg.pad1.x, 
+        mg.pad1.lastR,matrix.Color333(BLUE));
 
-  //intro();
-  // Draw Paddle1
-  matrix.drawLine(mg.pad1.x, mg.pad1.lastL, mg.pad1.x, 
-      mg.pad1.lastR,matrix.Color333(BLUE));
+    // Draw Paddle2
+    matrix.drawLine(mg.pad2.x, mg.pad2.lastL, mg.pad2.x, 
+       mg.pad2.lastR,matrix.Color333(BLUE));
 
-  // Draw Paddle2
-     matrix.drawLine(mg.pad2.x, mg.pad2.lastL, mg.pad2.x, 
-      mg.pad2.lastR,matrix.Color333(BLUE));
-      
-  // Draw Ball
-  matrix.drawPixel(mg.ball.x, mg.ball.y, 
-      matrix.Color333(RED));
-
+    if (randn < 5)
+      // Draw Ball
+      matrix.drawPixel(mg.ball.x, mg.ball.y, 
+          matrix.Color333(RED));
+      else {
+        mg.ball.x = 30;
+        matrix.drawPixel(mg.ball.x, mg.ball.y, 
+             matrix.Color333(RED));
+        mg.ball.dirB = S;
+      }
 }
 
 GraphicHandler gh;
