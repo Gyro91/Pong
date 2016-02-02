@@ -171,6 +171,10 @@ void MapGame::moveBall()
 {
 	checkDirBall();
 
+	#ifdef TEST
+	matrix.drawPixel(ball.x, ball.y, BLACK);
+	#endif
+
 	switch(ball.dirB) {
 		case N:
 			ball.x++;
@@ -197,6 +201,10 @@ void MapGame::moveBall()
 		default:
 			break;
 	}
+
+	#ifdef TEST
+	matrix.drawPixel(ball.x, ball.y, BLUE);
+	#endif
 }
 
 /* It changes the direction for a shot shore */

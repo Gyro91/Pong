@@ -26,6 +26,7 @@ class TestPong : public CppUnit::TestFixture
     CPPUNIT_TEST_SUITE(TestPong);
     CPPUNIT_TEST(testmovePad1Left);
     CPPUNIT_TEST(testmovePad1Right);
+    CPPUNIT_TEST(testmoveBall);
     CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -35,6 +36,8 @@ public:
 protected:
     void testmovePad1Left(void);
     void testmovePad1Right(void);
+    void testmoveBall(void);
+    void modBall(DirectionBall db);
     void testMultiply(void);
 
 private:
@@ -43,8 +46,44 @@ private:
 };
 
 //-----------------------------------------------------------------------------
+/* Testing the ball moves correctly int the matrix in any Direction */
+void
+TestPong::modBall(DirectionBall db)
+{
+	mp->ball.dirB = db;
+	mp->moveBall();
+}
 
+void
+TestPong::testmoveBall(void)
+{
+	 int startx = Pad1X + 1;
+     int starty = (Pad_yL + Pad_yR) / 2;
 
+     modBall(N);
+
+     CPPUNIT_ASSERT(mp->ball.x == (startx + 1) && (mp->ball.y == starty) );
+
+     modBall(S);
+
+     CPPUNIT_ASSERT(mp->ball.x == (startx) && (mp->ball.y == starty) );
+
+     modBall(NR);
+
+     CPPUNIT_ASSERT(mp->ball.x == (startx + 1) && (mp->ball.y == starty + 1) );
+
+     modBall(SL);
+
+     CPPUNIT_ASSERT(mp->ball.x == (startx) && (mp->ball.y == starty));
+
+     modBall(NL);
+
+     CPPUNIT_ASSERT(mp->ball.x == (startx + 1) && (mp->ball.y == starty - 1));
+
+     modBall(SR);
+
+     CPPUNIT_ASSERT(mp->ball.x == (startx) && (mp->ball.y == starty) );
+}
 /* TestmoveVausRight and TestmoveVausLeft
  * check if the line of the mocking matrix is false where it is not the Pad1
  * and true where the Pad1 it is

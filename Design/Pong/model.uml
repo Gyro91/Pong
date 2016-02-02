@@ -8,17 +8,11 @@
       <importedPackage xmi:type="uml:Profile" href="../SWArchitectureProfile/model.profile.uml#_-MQbgMH4EeWf7cYredJJHQ"/>
     </packageImport>
     <packagedElement xmi:type="uml:Package" xmi:id="_fbXXsMEoEeWBOoGIkavOQw" name="Functional">
-      <packagedElement xmi:type="uml:Association" xmi:id="_ms3Z8MEpEeWBOoGIkavOQw" name="ItsPaddle" memberEnd="_ms4BAMEpEeWBOoGIkavOQw _ms4BAcEpEeWBOoGIkavOQw">
+      <packagedElement xmi:type="uml:Association" xmi:id="_ms3Z8MEpEeWBOoGIkavOQw" name="ItsPaddles" memberEnd="_ms4BAMEpEeWBOoGIkavOQw _ms4BAcEpEeWBOoGIkavOQw">
         <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ms3Z8cEpEeWBOoGIkavOQw" source="org.eclipse.papyrus">
           <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ms3Z8sEpEeWBOoGIkavOQw" key="nature" value="SysML_Nature"/>
         </eAnnotations>
         <ownedEnd xmi:type="uml:Property" xmi:id="_ms4BAcEpEeWBOoGIkavOQw" name="mapgame_1" type="_MDfuoMEpEeWBOoGIkavOQw" association="_ms3Z8MEpEeWBOoGIkavOQw"/>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Association" xmi:id="_vdErUMEpEeWBOoGIkavOQw" name="ItsWall" memberEnd="_vdFSYsEpEeWBOoGIkavOQw _vdF5cMEpEeWBOoGIkavOQw">
-        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_vdFSYMEpEeWBOoGIkavOQw" source="org.eclipse.papyrus">
-          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_vdFSYcEpEeWBOoGIkavOQw" key="nature" value="SysML_Nature"/>
-        </eAnnotations>
-        <ownedEnd xmi:type="uml:Property" xmi:id="_vdF5cMEpEeWBOoGIkavOQw" name="mapgame_1" type="_MDfuoMEpEeWBOoGIkavOQw" association="_vdErUMEpEeWBOoGIkavOQw"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Association" xmi:id="_ZNMzAMEtEeWBOoGIkavOQw" name="ItsGH" memberEnd="_ZNNaEsEtEeWBOoGIkavOQw _ZNOBIMEtEeWBOoGIkavOQw">
         <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ZNNaEMEtEeWBOoGIkavOQw" source="org.eclipse.papyrus">
@@ -39,8 +33,10 @@
       </packagedElement>
       <packagedElement xmi:type="uml:Package" xmi:id="_d-CNAMKnEeWMjs8O3a-FlQ" name="MapGame">
         <packagedElement xmi:type="uml:Class" xmi:id="_MDfuoMEpEeWBOoGIkavOQw" name="MapGame">
-          <ownedAttribute xmi:type="uml:Property" xmi:id="_ms4BAMEpEeWBOoGIkavOQw" name="paddle_1" type="_kiOuYMEpEeWBOoGIkavOQw" aggregation="composite" association="_ms3Z8MEpEeWBOoGIkavOQw"/>
-          <ownedAttribute xmi:type="uml:Property" xmi:id="_vdFSYsEpEeWBOoGIkavOQw" name="wall_1" type="_tjc3QMEpEeWBOoGIkavOQw" aggregation="composite" association="_vdErUMEpEeWBOoGIkavOQw"/>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_ms4BAMEpEeWBOoGIkavOQw" name="paddle_1" type="_kiOuYMEpEeWBOoGIkavOQw" aggregation="composite" association="_ms3Z8MEpEeWBOoGIkavOQw">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_cia9wMkBEeWYfNKvq4utqA" value="2"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_cidaAMkBEeWYfNKvq4utqA" value="2"/>
+          </ownedAttribute>
           <ownedAttribute xmi:type="uml:Property" xmi:id="_hNzxIsKmEeWMjs8O3a-FlQ" name="ball_1" type="_y0bosMEpEeWBOoGIkavOQw" aggregation="composite" association="_hNzKEMKmEeWMjs8O3a-FlQ"/>
           <ownedAttribute xmi:type="uml:Port" xmi:id="_UWSS0MKrEeWMjs8O3a-FlQ" name="MatrixOperations" type="_VpmNcMKuEeWMjs8O3a-FlQ" aggregation="composite"/>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_EkYyQMKpEeWMjs8O3a-FlQ" name="updatePaddle">
@@ -103,16 +99,9 @@
             </ownedParameter>
           </ownedOperation>
         </packagedElement>
-        <packagedElement xmi:type="uml:Class" xmi:id="_tjc3QMEpEeWBOoGIkavOQw" name="Wall">
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_kjNpAMEtEeWBOoGIkavOQw" name="hitBrick">
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_wTwe4MEtEeWBOoGIkavOQw" name="index">
-              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
-            </ownedParameter>
-          </ownedOperation>
-        </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="_dBTpkMKoEeWMjs8O3a-FlQ" name="MapGame">
           <ownedAttribute xmi:type="uml:Property" xmi:id="_dBTpkcKoEeWMjs8O3a-FlQ" name="paddle_1" type="_kiOuYMEpEeWBOoGIkavOQw" aggregation="composite"/>
-          <ownedAttribute xmi:type="uml:Property" xmi:id="_dBTpksKoEeWMjs8O3a-FlQ" name="wall_1" type="_tjc3QMEpEeWBOoGIkavOQw" aggregation="composite"/>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_dBTpksKoEeWMjs8O3a-FlQ" name="wall_1" aggregation="composite"/>
           <ownedAttribute xmi:type="uml:Property" xmi:id="_dBTpk8KoEeWMjs8O3a-FlQ" name="ball_1" type="_y0bosMEpEeWBOoGIkavOQw" aggregation="composite"/>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_dBTplMKoEeWMjs8O3a-FlQ" name="updatePaddle">
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_dBTplcKoEeWMjs8O3a-FlQ" name="x">
@@ -179,6 +168,12 @@
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
         </ownedAttribute>
         <ownedAttribute xmi:type="uml:Property" xmi:id="_x_aaMcKzEeWMjs8O3a-FlQ" name="microcontroller_1" type="_vIdbMMKzEeWMjs8O3a-FlQ" aggregation="composite" association="_x_ZzIMKzEeWMjs8O3a-FlQ"/>
+        <ownedAttribute xmi:type="uml:Port" xmi:id="_w3rxQMkCEeWYfNKvq4utqA" name="PIN14" aggregation="composite">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:type="uml:Port" xmi:id="_zcXUgMkCEeWYfNKvq4utqA" name="PIN15" aggregation="composite">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_elMvIMKxEeWMjs8O3a-FlQ" name="RGBMatrix">
         <ownedAttribute xmi:type="uml:Port" xmi:id="_elQuoMKzEeWMjs8O3a-FlQ" name="dataM" aggregation="composite">
@@ -200,6 +195,7 @@
         <ownedAttribute xmi:type="uml:Property" xmi:id="_8B4PksKxEeWMjs8O3a-FlQ" name="rgbmatrix_1" type="_elMvIMKxEeWMjs8O3a-FlQ" aggregation="composite" association="_8B3ogMKxEeWMjs8O3a-FlQ"/>
         <ownedAttribute xmi:type="uml:Property" xmi:id="_8ZOYksKxEeWMjs8O3a-FlQ" name="arduino_1" type="_a7yYcMKxEeWMjs8O3a-FlQ" aggregation="composite" association="_8ZNxgMKxEeWMjs8O3a-FlQ"/>
         <ownedAttribute xmi:type="uml:Property" xmi:id="_80UZIMKxEeWMjs8O3a-FlQ" name="gamepad_1" type="_ifQJ4MKxEeWMjs8O3a-FlQ" aggregation="composite" association="_80TyEMKxEeWMjs8O3a-FlQ"/>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_l2sJAMkCEeWYfNKvq4utqA" name="gamepad2_1" type="_hvdN4MkCEeWYfNKvq4utqA" aggregation="composite" association="_l2oeoMkCEeWYfNKvq4utqA"/>
         <ownedConnector xmi:type="uml:Connector" xmi:id="_d9tJ8MK0EeWMjs8O3a-FlQ">
           <end xmi:type="uml:ConnectorEnd" xmi:id="_d9txAMK0EeWMjs8O3a-FlQ" partWithPort="_80UZIMKxEeWMjs8O3a-FlQ" role="_UlHfYMKzEeWMjs8O3a-FlQ"/>
           <end xmi:type="uml:ConnectorEnd" xmi:id="_d9txAcK0EeWMjs8O3a-FlQ" partWithPort="_8ZOYksKxEeWMjs8O3a-FlQ" role="__R71oMKyEeWMjs8O3a-FlQ"/>
@@ -215,6 +211,14 @@
         <ownedConnector xmi:type="uml:Connector" xmi:id="_s77cwMK0EeWMjs8O3a-FlQ">
           <end xmi:type="uml:ConnectorEnd" xmi:id="_s78D0MK0EeWMjs8O3a-FlQ" partWithPort="_8ZOYksKxEeWMjs8O3a-FlQ" role="_gtMrgMKzEeWMjs8O3a-FlQ"/>
           <end xmi:type="uml:ConnectorEnd" xmi:id="_s78D0cK0EeWMjs8O3a-FlQ" partWithPort="_8B4PksKxEeWMjs8O3a-FlQ" role="_elQuoMKzEeWMjs8O3a-FlQ"/>
+        </ownedConnector>
+        <ownedConnector xmi:type="uml:Connector" xmi:id="_crrVgMkDEeWYfNKvq4utqA" name="Connector1">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_crsjoMkDEeWYfNKvq4utqA" partWithPort="_l2sJAMkCEeWYfNKvq4utqA" role="_hvdN4ckCEeWYfNKvq4utqA"/>
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_crsjockDEeWYfNKvq4utqA" partWithPort="_8ZOYksKxEeWMjs8O3a-FlQ" role="_w3rxQMkCEeWYfNKvq4utqA"/>
+        </ownedConnector>
+        <ownedConnector xmi:type="uml:Connector" xmi:id="_d2neoMkDEeWYfNKvq4utqA" name="Connector2">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_d2oFsMkDEeWYfNKvq4utqA" partWithPort="_l2sJAMkCEeWYfNKvq4utqA" role="_hvdN4skCEeWYfNKvq4utqA"/>
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_d2oFsckDEeWYfNKvq4utqA" partWithPort="_8ZOYksKxEeWMjs8O3a-FlQ" role="_zcXUgMkCEeWYfNKvq4utqA"/>
         </ownedConnector>
       </packagedElement>
       <packagedElement xmi:type="uml:Association" xmi:id="_8B3ogMKxEeWMjs8O3a-FlQ" memberEnd="_8B4PksKxEeWMjs8O3a-FlQ _8B4Pk8KxEeWMjs8O3a-FlQ">
@@ -241,6 +245,20 @@
           <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_x_aaMMKzEeWMjs8O3a-FlQ" key="nature" value="SysML_Nature"/>
         </eAnnotations>
         <ownedEnd xmi:type="uml:Property" xmi:id="_x_boUMKzEeWMjs8O3a-FlQ" name="arduino_1" type="_a7yYcMKxEeWMjs8O3a-FlQ" association="_x_ZzIMKzEeWMjs8O3a-FlQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_hvdN4MkCEeWYfNKvq4utqA" name="GamePad2">
+        <ownedAttribute xmi:type="uml:Port" xmi:id="_hvdN4ckCEeWYfNKvq4utqA" name="Button1" visibility="public" aggregation="composite">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:type="uml:Port" xmi:id="_hvdN4skCEeWYfNKvq4utqA" name="Button2" aggregation="composite">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_l2oeoMkCEeWYfNKvq4utqA" memberEnd="_l2sJAMkCEeWYfNKvq4utqA _l2sJAckCEeWYfNKvq4utqA">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_l2q64MkCEeWYfNKvq4utqA" source="org.eclipse.papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_l2q64ckCEeWYfNKvq4utqA" key="nature" value="SysML_Nature"/>
+        </eAnnotations>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_l2sJAckCEeWYfNKvq4utqA" name="platformsystem_1" type="_3GJ8cMKxEeWMjs8O3a-FlQ" association="_l2oeoMkCEeWYfNKvq4utqA"/>
       </packagedElement>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_iZ8BoMEoEeWBOoGIkavOQw" name="Mapping">
@@ -410,7 +428,6 @@
   <Blocks:Block xmi:id="_3FK6kMEoEeWBOoGIkavOQw" base_Class="_3FKTgMEoEeWBOoGIkavOQw"/>
   <Blocks:Block xmi:id="_MDg8wMEpEeWBOoGIkavOQw" base_Class="_MDfuoMEpEeWBOoGIkavOQw"/>
   <Blocks:Block xmi:id="_kiPVcMEpEeWBOoGIkavOQw" base_Class="_kiOuYMEpEeWBOoGIkavOQw"/>
-  <Blocks:Block xmi:id="_tjeFYMEpEeWBOoGIkavOQw" base_Class="_tjc3QMEpEeWBOoGIkavOQw"/>
   <Blocks:Block xmi:id="_y0cPwMEpEeWBOoGIkavOQw" base_Class="_y0bosMEpEeWBOoGIkavOQw"/>
   <Blocks:Block xmi:id="_WRSbgMEtEeWBOoGIkavOQw" base_Class="_WRR0cMEtEeWBOoGIkavOQw"/>
   <Blocks:Block xmi:id="_5e5SQMKtEeWMjs8O3a-FlQ" base_Class="_5e4EIMKtEeWMjs8O3a-FlQ"/>
@@ -433,5 +450,10 @@
   <Blocks:Block xmi:id="_xBTr0MK2EeWMjs8O3a-FlQ" base_Class="_xBSdsMK2EeWMjs8O3a-FlQ"/>
   <Blocks:Block xmi:id="_KqpBAMK4EeWMjs8O3a-FlQ" base_Class="_KqoZ8MK4EeWMjs8O3a-FlQ"/>
   <Blocks:Block xmi:id="_ZOY-UMK4EeWMjs8O3a-FlQ" base_Class="_ZOYXQMK4EeWMjs8O3a-FlQ"/>
-  <SWArchitectureProfile:PeriodicTask xmi:id="_cFBNMMK4EeWMjs8O3a-FlQ" base_Class="_ZOYXQMK4EeWMjs8O3a-FlQ" period="50"/>
+  <SWArchitectureProfile:Thread xmi:id="_2ocrcMkBEeWYfNKvq4utqA" base_Class="_ZOYXQMK4EeWMjs8O3a-FlQ"/>
+  <Blocks:Block xmi:id="_hvfDEMkCEeWYfNKvq4utqA" base_Class="_hvdN4MkCEeWYfNKvq4utqA"/>
+  <PortAndFlows:FlowPort xmi:id="_hvgRMMkCEeWYfNKvq4utqA" base_Port="_hvdN4ckCEeWYfNKvq4utqA" direction="out"/>
+  <PortAndFlows:FlowPort xmi:id="_hvg4QMkCEeWYfNKvq4utqA" base_Port="_hvdN4skCEeWYfNKvq4utqA" direction="out"/>
+  <PortAndFlows:FlowPort xmi:id="_w3tmcMkCEeWYfNKvq4utqA" base_Port="_w3rxQMkCEeWYfNKvq4utqA" direction="in"/>
+  <PortAndFlows:FlowPort xmi:id="_zcX7kMkCEeWYfNKvq4utqA" base_Port="_zcXUgMkCEeWYfNKvq4utqA" direction="in"/>
 </xmi:XMI>

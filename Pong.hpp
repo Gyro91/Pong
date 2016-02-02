@@ -18,10 +18,7 @@
 #define RMATRIX 32
 #define CMATRIX 32
 
-/* Rows&Columns for the Wall */
-#define RWALL 4
-#define CWALL 20
-#define OFFSET 5
+
 
 
 #define NOTEST
@@ -52,12 +49,6 @@
 
 typedef enum DirectionPad{LEFT, RIGHT} DirectionPad;
 typedef enum DirectionBall{NL, N, NR, SL, S, SR} DirectionBall;
-
-class Brick {
-public:
-	int x1, y1, x2, y2;
-};
-
 
 
 

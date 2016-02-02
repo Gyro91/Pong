@@ -17,7 +17,6 @@
 #define C   A2
 #define D   A3
 // Buttons
-#define BFIRE 11
 #define BLEFT1 12
 #define BRIGHT1 13
 #define BLEFT2 A4
@@ -27,11 +26,17 @@
 MapGame mg;
 RGBmatrixPanel matrix(A, B, C, D, CLK, LAT, OE, false);
 
-unsigned char START = 0;
+unsigned char count1 = 0;
+unsigned char count2 = 0;
 unsigned char points_p1 = 0;
 unsigned char points_p2 = 0;
 unsigned char oldpoints_p1 = 0; 
 unsigned char oldpoints_p2 = 0;
+unsigned char v_pad1 = 60;
+unsigned char v_pad2 = 60;
+
+DirectionPad last_action1;
+DirectionPad last_action2;
 
 
 /* This function prints on screen the introduction of 
@@ -86,7 +91,6 @@ void showPoints()
       matrix.print('1');
         break;
     case 2:
-    
     if (oldpoints_p1 != points_p1) {
           matrix.setCursor(5, 0); 
           matrix.setTextColor(matrix.Color333(BLACK));
@@ -178,7 +182,7 @@ void showPoints()
         break;
      case 4:
      
-    if (oldpoints_p2 != points_p2) {
+       if (oldpoints_p2 != points_p2) {
           matrix.setCursor(20, 0);
           matrix.setTextColor(matrix.Color333(BLACK));
           matrix.print('3'); 
@@ -246,8 +250,6 @@ void endGame()
  */
  
 class GraphicHandler {
-  unsigned long previousMillis1 = 0;
-  unsigned long previousMillis2 = 0;
 
 public:
   void drawPad1() {
@@ -267,61 +269,88 @@ public:
       matrix.drawLine(mg.pad2.x, mg.pad2.lastL, mg.pad2.x, 
           mg.pad2.lastR, matrix.Color333(BLACK));
   }
-  void buttonsAction()
+  void buttonsActionP1(int *ledstate0, int *ledstate1)
   { 
-    int ledstate0, ledstate1, ledstate2, ledstate3, ledstate4;
-    
-    ledstate0 = digitalRead(BLEFT1);
-    ledstate1 = digitalRead(BRIGHT1);
-    ledstate2 = digitalRead(BRIGHT2); 
-    ledstate3 = digitalRead(BLEFT2);
-    ledstate4 = digitalRead(BFIRE);
-    
-    if (ledstate0 == HIGH) {
+   
+    if (*ledstate0 == HIGH) {
         deletePad1();
         mg.movePad1(LEFT);
         drawPad1();
-
+        if (last_action1 == LEFT ) {
+           if (v_pad1 > 30)
+           v_pad1 -= 5;
+        }
+        else v_pad1 = 60;
+        last_action1 = LEFT;
     }   
-    if (ledstate1 == HIGH) {
+    if (*ledstate1 == HIGH) {
         deletePad1();
         mg.movePad1(RIGHT);
         drawPad1();
+        if (last_action1 == RIGHT) {
+          if (v_pad1 > 30)
+            v_pad1 -= 5;
+        }    
+        else v_pad1 = 60;
+        last_action1 = RIGHT;
     }
     
-    if (ledstate3 == LOW) {
+
+  }
+
+  void buttonsActionP2(int *ledstate2, int *ledstate3) 
+  {
+     
+    if (*ledstate3 == LOW) {
         deletePad2();
         mg.movePad2(LEFT);
         drawPad2();
      
     }
     
-    if (ledstate2 == LOW) { 
+    if (*ledstate2 == LOW) { 
         deletePad2();
         mg.movePad2(RIGHT);
         drawPad2();
-    }
-    
-    if (ledstate4 == HIGH && START == 0) {
-        START = 1;
-        matrix.drawPixel(mg.ball.x, mg.ball.y, 
-            matrix.Color333(BLACK));
-        mg.moveBall();
-        matrix.drawPixel(mg.ball.x, mg.ball.y, 
-            matrix.Color333(BLUE));
-    }
+    }  
   }
   
   void update()
   { 
     unsigned long currentMillis;
-    currentMillis = millis();
-    if ((currentMillis - previousMillis1) >= 50) {
-        previousMillis1 = currentMillis;
-        buttonsAction();
-    }   
-    if (START == 1 && (currentMillis - previousMillis2) >= 35) {
-        previousMillis2 = currentMillis;
+    int ledstate0, ledstate1,ledstate2, ledstate3;
+    unsigned long previousMillis1 = 0;
+    unsigned long previousMillis2 = 0;
+    unsigned long previousMillis3 = 0;
+    unsigned long previousMillis4 = 0;
+    unsigned int count0, count2;
+    while(1) {
+  
+      currentMillis = millis();
+
+      if ((currentMillis - previousMillis1) >= 50) {
+         previousMillis1 = currentMillis;
+         ledstate0 = digitalRead(BLEFT1);
+         ledstate1 = digitalRead(BRIGHT1);
+         ledstate2 = digitalRead(BLEFT1);
+         ledstate3 = digitalRead(BRIGHT1);
+    }
+    if ((currentMillis - previousMillis2) >= v_pad1) {
+         previousMillis2 = currentMillis;
+         buttonsActionP1(&ledstate0, &ledstate1);
+         ledstate0 = LOW;
+         ledstate1 = LOW;
+    }
+    if ((currentMillis - previousMillis3) >= v_pad2) {     
+         previousMillis3 = currentMillis;
+         ledstate2 = digitalRead(BRIGHT2); 
+         ledstate3 = digitalRead(BLEFT2); 
+         buttonsActionP2(&ledstate2, &ledstate3);
+         ledstate2 = LOW;
+         ledstate3 = LOW;
+    }
+    if ((currentMillis - previousMillis4) >= 40) {
+        previousMillis4 = currentMillis;
         matrix.drawPixel(mg.ball.x, mg.ball.y, 
             matrix.Color333(BLACK));
         
@@ -348,7 +377,7 @@ public:
      showPoints();
      
     }
-
+    }
    
   }
 };
@@ -359,13 +388,12 @@ void setup()
  
   matrix.begin();
   
-  pinMode(BFIRE, INPUT);
   pinMode(BLEFT1, INPUT);
   pinMode(BRIGHT1, INPUT);
   pinMode(BLEFT2, INPUT);
   pinMode(BRIGHT2, INPUT);
 
-  intro();
+  //intro();
   // Draw Paddle1
   matrix.drawLine(mg.pad1.x, mg.pad1.lastL, mg.pad1.x, 
       mg.pad1.lastR,matrix.Color333(BLUE));
@@ -385,5 +413,6 @@ GraphicHandler gh;
 void loop() 
 {
     gh.update();
+
  
 }

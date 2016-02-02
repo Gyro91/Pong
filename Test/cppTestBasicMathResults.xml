@@ -9,7 +9,7 @@
       <Name>TestPong::testmovePad1Right</Name>
     </Test>
     <Test id="3">
-      <Name>TestPong::testmovePad1Right</Name>
+      <Name>TestPong::testmoveBall</Name>
     </Test>
   </SuccessfulTests>
   <Statistics>
