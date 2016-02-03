@@ -84,7 +84,7 @@ TestPong::testmoveBall(void)
 
      CPPUNIT_ASSERT(mp->ball.x == (startx) && (mp->ball.y == starty) );
 }
-/* TestmoveVausRight and TestmoveVausLeft
+/* TestmovePad1Right and TestmovePad1Left
  * check if the line of the mocking matrix is false where it is not the Pad1
  * and true where the Pad1 it is
  *
